@@ -4,53 +4,24 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ygd-editor — download</title>
-<meta name="description" content="Download ygd-editor for macOS, Windows and Linux: git worktrees and AI agent sessions, side by side.">
-<link rel="icon" href="icon.svg" type="image/svg+xml">
-<style>
-  :root {
-    --bg: #f4f4f5; --card: #ffffff; --ink: #1c1f24; --muted: #5f6672; --line: #dcdfe4;
-    --accent: #5980a6; --accent-ink: #ffffff; --accent-soft: #e6edf5; --code: #eef0f3;
-    color-scheme: light dark;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg: #15171b; --card: #1e2126; --ink: #e8eaee; --muted: #9aa3b0; --line: #2e333b; --accent: #7ea3c8; --accent-ink: #0f1318; --accent-soft: #24303d; --code: #262b33; }
-  }
-  * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-  main { max-width: 860px; margin: 0 auto; padding: 48px 20px 64px; }
-  header { display: flex; align-items: center; gap: 18px; margin-bottom: 36px; }
-  header svg { width: 72px; height: 72px; flex: none; }
-  h1 { margin: 0; font-size: 30px; letter-spacing: -0.01em; }
-  .tagline { margin: 4px 0 0; color: var(--muted); }
-  .hero { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 26px; display: grid; gap: 14px; }
-  .hero .primary { display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: var(--accent-ink); text-decoration: none; font-weight: 600; font-size: 17px; padding: 14px 22px; border-radius: 10px; width: fit-content; }
-  .hero .primary:hover { filter: brightness(1.06); }
-  .hero .primary[aria-disabled="true"] { opacity: .55; pointer-events: none; }
-  .meta { color: var(--muted); font-size: 13.5px; }
-  .alt { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 14px; }
-  .alt a { color: var(--ink); }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 28px; }
-  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; }
-  .card h2 { margin: 0 0 8px; font-size: 15px; }
-  .card ul { margin: 0; padding-left: 18px; }
-  .card li { margin: 4px 0; }
-  .card a { color: var(--accent); }
-  section { margin-top: 36px; }
-  h3 { font-size: 17px; margin: 0 0 10px; }
-  p { margin: 8px 0; }
-  code, pre { font: 12.5px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: var(--code); border-radius: 6px; }
-  code { padding: 1px 6px; }
-  pre { padding: 12px 14px; overflow-x: auto; }
-  .fp { word-break: break-all; }
-  footer { margin-top: 44px; color: var(--muted); font-size: 13.5px; display: flex; flex-wrap: wrap; gap: 8px 20px; }
-  footer a { color: inherit; }
-  .hidden { display: none; }
-</style>
+<meta name="description" content="ygd-editor: run AI coding agents in separate git worktrees, review their changes and ship them, all from one window. Free for macOS, Windows and Linux.">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="es" href="es/index.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<script>
+(() => { try {
+  const q = new URLSearchParams(location.search).get('lang'); if (q) { localStorage.setItem('ygd-lang', q) }
+  const pick = localStorage.getItem('ygd-lang') || ((navigator.language || '').toLowerCase().startsWith('es') ? 'es' : 'en')
+  if (pick === 'es' && !location.pathname.includes('/es/')) location.replace('es/' + location.pathname.split('/').pop().replace(/^$/, 'index.html') + location.hash)
+} catch (e) {} })()
+</script>
 </head>
 <body>
-<main>
-  <header>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="index.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
   
   <defs>
     <clipPath id="tile"><rect x="100" y="100" width="824" height="824" rx="184"/></clipPath>
@@ -67,116 +38,94 @@
     <path d="M18 17.5H6"/>
   </g>
 </svg>
-
-    <div>
-      <h1>ygd-editor</h1>
-      <p class="tagline">Git worktrees and AI agent sessions, side by side. macOS, Windows and Linux.</p>
-    </div>
+<span>ygd-editor</span></a>
+    <nav>
+      <a href="index.html#download">Download</a>
+      <a href="guide.html">Guide</a>
+      <a href="https://github.com/MHGuitarte/ygd-editor-releases/releases">All versions</a>
+      <a href="https://github.com/MHGuitarte/ygd-editor-releases/issues">Report a problem</a>
+    </nav>
+    <a class="lang" href="es/index.html?lang=es" hreflang="es">Español</a>
   </header>
 
-  <div class="hero">
-    <a id="primary" class="primary" href="#" aria-disabled="true"><span id="primary-label">Looking up the latest release…</span></a>
-    <div id="meta" class="meta"></div>
-    <div id="alt" class="alt"></div>
-  </div>
+  <main>
+    <div class="hero" id="download">
+      <h1>Give every task its own branch and its own AI agent — and keep an eye on all of them.</h1>
+      <p class="lead">ygd-editor opens each task in its own git worktree, runs a coding agent inside it (Claude Code, Codex or Gemini CLI), and lets you review the changes, commit, push and open the pull request without leaving the window. Free, for macOS, Windows and Linux.</p>
+      <div class="dl">
+        <a id="dl" class="btn" href="https://github.com/MHGuitarte/ygd-editor-releases/releases" aria-disabled="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg><span id="dl-label">Finding the latest version…</span></a>
+        <div id="dl-meta" class="meta"></div>
+        <div id="dl-others" class="others"></div>
+      </div>
+      <figure class="shot"><img src="assets/img/console.png" alt="The console: worktrees on the left, changes and diff in the middle, the agent session on the right." width="1440" height="900"><figcaption>The console: worktrees on the left, changes and diff in the middle, the agent session on the right.</figcaption></figure>
+    </div>
 
-  <div class="grid">
-    <div class="card">
-      <h2>First launch on macOS</h2>
-      <ul>
-        <li>Open the <code>.dmg</code> and drag ygd-editor to Applications.</li>
-        <li>macOS says the developer is unidentified: <strong>right-click the app → Open</strong> once, or allow it under System Settings › Privacy &amp; Security.</li>
-        <li>Apple Silicon and Intel builds are separate downloads.</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h2>First launch on Windows</h2>
-      <ul>
-        <li>Run the installer. SmartScreen shows “Windows protected your PC”: <strong>More info → Run anyway</strong>.</li>
-        <li>The publisher reads <em>ygd-editor release signing</em>; the thumbprint to compare is below.</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h2>First launch on Linux</h2>
-      <ul>
-        <li>AppImage: <code>chmod +x ygd-editor-*.AppImage</code>, then run it.</li>
-        <li>Debian/Ubuntu: <code>sudo apt install ./ygd-editor-*.deb</code>.</li>
-      </ul>
-    </div>
-  </div>
+    <section id="what"><h2>What you get</h2><div class="cards"><div class="card"><h3>One worktree per task</h3><p>Every branch gets its own folder, so agents never step on each other and you can switch tasks without stashing anything.</p></div><div class="card"><h3>Agents where the code is</h3><p>Start Claude Code, Codex or Gemini CLI inside a worktree, watch it work, answer its questions, and hand a session to another worktree when plans change.</p></div><div class="card"><h3>Review and ship in place</h3><p>Stage files, read the diff, ask the agent to explain or change a selection, commit, push and open the pull request from the same screen.</p></div><div class="card"><h3>Stays out of your way</h3><p>A single inbox for every session waiting on you, optional desktop notifications, and a daily spend meter with limits you set.</p></div></div></section>
 
-  <section>
-    <h3>Is this download genuine?</h3>
-    <p>Nobody paid Apple or Microsoft for a certificate, so the operating systems show their unidentified-developer prompt. Those prompts say nothing about tampering; these two checks do.</p>
-    <p><strong>Provenance.</strong> Every release ships <code>SHA256SUMS.txt</code> signed with Sigstore by the project's release workflow itself. With <a href="https://docs.sigstore.dev/cosign/system_config/installation/">cosign</a> installed:</p>
+    <section id="install"><h2>Install in a minute</h2><p class="lead" style="font-size:17px">Your computer will warn you the first time. That is expected: nobody paid Apple or Microsoft for a certificate, and the warning is about the missing paperwork, not about anything the app does. Here is how to get past it once.</p>
+      <div class="steps" style="margin-top:18px"><div class="card"><h3>macOS</h3><ol><li>Open the downloaded <code>.dmg</code> and drag <strong>ygd-editor</strong> into Applications.</li><li>The first time, <strong>right-click the app and choose Open</strong>. If macOS still refuses, go to System Settings › Privacy &amp; Security and click <em>Open Anyway</em>.</li><li>Not sure which Mac you have? Apple menu › About This Mac: “Apple M…” is Apple Silicon, anything with “Intel” is Intel.</li></ol></div><div class="card"><h3>Windows</h3><ol><li>Run the installer. When SmartScreen says “Windows protected your PC”, click <strong>More info</strong>, then <strong>Run anyway</strong>.</li><li>The publisher shown is <em>ygd-editor release signing</em> — that is us. Pick the install folder if you like and finish.</li><li>The app appears in the Start menu as ygd-editor.</li></ol></div><div class="card"><h3>Linux</h3><ol><li><strong>AppImage:</strong> make it executable (<code>chmod +x ygd-editor-*.AppImage</code>) and run it. If it complains about FUSE, run it with <code>--appimage-extract-and-run</code>.</li><li><strong>Debian / Ubuntu:</strong> <code>sudo apt install ./ygd-editor-*.deb</code>, then find it in your applications menu.</li></ol></div></div>
+      <div class="note"><h3>What you need</h3><p>Git on your computer, and at least one agent command line installed and signed in with your own account: <a href="https://docs.anthropic.com/en/docs/claude-code">Claude Code</a>, <a href="https://github.com/openai/codex">Codex</a> or <a href="https://github.com/google-gemini/gemini-cli">Gemini CLI</a>. For pull requests, GitHub’s <code>gh</code> or GitLab’s <code>glab</code>. The app finds them and tells you what is missing under Settings › AI providers.</p></div>
+    </section>
+
+    <section id="updates"><h2>Updates take care of themselves</h2><p>Shortly after launch the app checks for a new version, downloads it quietly and offers “Restart to update”. Settings › Notifications also has a “Check for updates” button and, if you prefer, an option to install updates by itself when nothing is running. After an update, the app tells you what version you are on and links to what changed.</p></section>
+
+    <section id="guide"><div class="note"><h3>New here?</h3><p>The <a href="guide.html">user guide</a> walks through the first ten minutes: opening a repository, creating a worktree, starting an agent, reviewing and shipping the result.</p></div></section>
+
+    <section id="genuine"><h2>Is my download genuine?</h2><p>Two independent checks, neither of which relies on trusting a name. You do not need to run them; they are here for the people who want to.</p>
+      <details><summary>Is my download genuine? — the technical details</summary>
+        <p><strong>Provenance.</strong> Every version comes with <code>SHA256SUMS.txt</code>, signed through <a href="https://www.sigstore.dev/">Sigstore</a> by the project’s own release workflow. With <code>cosign</code> installed:</p>
 <pre>cosign verify-blob --bundle SHA256SUMS.txt.sigstore.json \
   --certificate-identity-regexp '^https://github.com/MHGuitarte/ygd-editor/\.github/workflows/release\.yml@refs/tags/v' \
   --certificate-oidc-issuer https://token.actions.githubusercontent.com SHA256SUMS.txt
-sha256sum --check --ignore-missing SHA256SUMS.txt   # shasum -a 256 -c on macOS</pre>
-    <p><strong>Code signature.</strong> The macOS app and the Windows installer are signed with the project's own certificate (<a href="release-signing.pem">public key</a>). Compare the fingerprint, not the name — anyone can name a certificate anything:</p>
-    <p class="fp">SHA-256 <code>46:C5:62:27:2A:5C:22:9E:D7:85:E1:A3:0D:47:2A:A3:5B:CE:AC:F0:7D:E4:D8:A3:49:23:C9:7B:D3:74:C3:AB</code><br>SHA-1 (macOS <code>codesign</code>, Windows thumbprint) <code>79A40643BDFE500AB6730154B03B336C1809C57C</code></p>
+sha256sum --check --ignore-missing SHA256SUMS.txt   # macOS: shasum -a 256 -c SHA256SUMS.txt</pre>
+        <p><strong>Code signature.</strong> The macOS app and the Windows installer are signed with the project’s certificate (<a href="release-signing.pem">public key</a>). Compare the fingerprint, not the name — anyone can name a certificate anything.</p>
+        <span class="fp">SHA-256 46:C5:62:27:2A:5C:22:9E:D7:85:E1:A3:0D:47:2A:A3:5B:CE:AC:F0:7D:E4:D8:A3:49:23:C9:7B:D3:74:C3:AB</span>
+        <span class="fp">SHA-1 (macOS codesign · Windows thumbprint) 79A40643BDFE500AB6730154B03B336C1809C57C</span>
 <pre># macOS
-codesign --verify --deep --strict /Applications/ygd-editor.app &amp;&amp; codesign -dvv /Applications/ygd-editor.app 2>&amp;1 | grep Authority
+codesign --verify --deep --strict /Applications/ygd-editor.app &amp;&amp; codesign -dvv /Applications/ygd-editor.app 2&gt;&amp;1 | grep Authority
 # Windows (PowerShell)
 (Get-AuthenticodeSignature .\ygd-editor-*-setup.exe).SignerCertificate.Thumbprint</pre>
-  </section>
-
-  <section>
-    <h3>Updates</h3>
-    <p>The app checks this repository shortly after launch, downloads a new version in the background and offers “Restart to update”. Settings › Notifications also has a manual check and an option to install updates by itself when nothing is running.</p>
-  </section>
-
-  <footer>
-    <a id="all-releases" href="https://github.com/MHGuitarte/ygd-editor-releases/releases">All releases and notes</a>
-    <a href="https://github.com/MHGuitarte/ygd-editor-releases/issues">Report a problem</a>
-    <span>© Manu Hurtado</span>
-  </footer>
-</main>
-<script>
+      </details>
+    </section>
+  </main>
+  <script>
 (async () => {
-  const REPO = 'MHGuitarte/ygd-editor-releases'
-  const primary = document.getElementById('primary'), label = document.getElementById('primary-label')
-  const meta = document.getElementById('meta'), alt = document.getElementById('alt')
+  const REPO = 'MHGuitarte/ygd-editor-releases', S = {"lang": "en", "none": "No version published yet", "noneHint": "The first release is on its way.", "for": "Download for {label}", "error": "See all versions", "errorHint": "Could not read the latest version ({err}). The releases page has every download.", "others": "Other systems:", "checksums": "Checksums", "free": "Free · no account needed · updates itself", "kinds": {"mac-arm64": "macOS · Apple Silicon (M1 and later)", "mac-x64": "macOS · Intel", "win-x64": "Windows", "linux-appimage": "Linux · AppImage", "linux-deb": "Linux · Debian / Ubuntu"}}
   const kinds = [
-    { key: 'mac-arm64', label: 'macOS · Apple Silicon', test: (n) => /-mac-arm64\.dmg$/.test(n) },
-    { key: 'mac-x64', label: 'macOS · Intel', test: (n) => /-mac-x64\.dmg$/.test(n) },
-    { key: 'win-x64', label: 'Windows · x64 installer', test: (n) => /-win-x64-setup\.exe$/.test(n) },
-    { key: 'linux-appimage', label: 'Linux · AppImage', test: (n) => /\.AppImage$/.test(n) },
-    { key: 'linux-deb', label: 'Linux · deb', test: (n) => /\.deb$/.test(n) },
+    { key: 'mac-arm64', test: (n) => /-mac-arm64\.dmg$/.test(n) }, { key: 'mac-x64', test: (n) => /-mac-x64\.dmg$/.test(n) },
+    { key: 'win-x64', test: (n) => /-win-x64-setup\.exe$/.test(n) }, { key: 'linux-appimage', test: (n) => /\.AppImage$/.test(n) }, { key: 'linux-deb', test: (n) => /\.deb$/.test(n) },
   ]
-  const detect = () => {
-    const ua = navigator.userAgent, plat = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || ''
-    if (/Windows/i.test(plat) || /Windows/.test(ua)) return 'win-x64'
-    if (/Mac/i.test(plat) || /Macintosh/.test(ua)) return 'mac-arm64' // Safari reports Intel on Apple Silicon too; the Intel build is one link away
-    if (/Linux/i.test(plat) || /Linux/.test(ua)) return 'linux-appimage'
-    return null
-  }
-  const size = (b) => b > 1e9 ? (b / 1e9).toFixed(2) + ' GB' : (b / 1e6).toFixed(0) + ' MB'
+  const detect = () => { const ua = navigator.userAgent, plat = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || ''
+    if (/Windows/i.test(plat) || /Windows/.test(ua)) return 'win-x64'; if (/Mac/i.test(plat) || /Macintosh/.test(ua)) return 'mac-arm64'; if (/Linux/i.test(plat) || /Linux/.test(ua)) return 'linux-appimage'; return null }
+  const btn = document.getElementById('dl'), label = document.getElementById('dl-label'), meta = document.getElementById('dl-meta'), others = document.getElementById('dl-others')
+  const mb = (b) => (b / 1e6).toFixed(0) + ' MB'
   try {
     const res = await fetch(`https://api.github.com/repos/${REPO}/releases/latest`, { headers: { Accept: 'application/vnd.github+json' } })
-    if (res.status === 404) { label.textContent = 'No release published yet'; meta.textContent = 'The first version is on its way.'; return }
-    if (!res.ok) throw new Error(`GitHub answered ${res.status}`)
+    if (res.status === 404) { label.textContent = S.none; meta.textContent = S.noneHint; return }
+    if (!res.ok) throw new Error(`HTTP ${res.status}`)
     const rel = await res.json()
     const found = kinds.map((k) => ({ ...k, asset: rel.assets.find((a) => k.test(a.name)) })).filter((k) => k.asset)
-    const want = detect()
-    const main = found.find((k) => k.key === want) || found[0]
-    if (!main) { label.textContent = 'No installers in the latest release'; return }
-    primary.href = main.asset.browser_download_url; primary.removeAttribute('aria-disabled')
-    label.textContent = `Download for ${main.label}`
-    const date = rel.published_at ? new Date(rel.published_at).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' }) : ''
-    meta.textContent = `${rel.tag_name} · ${size(main.asset.size)}${date ? ' · ' + date : ''}`
-    for (const k of found) {
-      if (k === main) continue
-      const a = document.createElement('a'); a.href = k.asset.browser_download_url; a.textContent = k.label; alt.appendChild(a)
-    }
-    const sums = rel.assets.find((a) => a.name === 'SHA256SUMS.txt')
-    if (sums) { const a = document.createElement('a'); a.href = sums.browser_download_url; a.textContent = 'SHA256SUMS.txt'; alt.appendChild(a) }
-    document.getElementById('all-releases').href = rel.html_url.replace(/\/tag\/.*$/, '')
-  } catch (e) {
-    label.textContent = 'See all releases'; primary.href = `https://github.com/${REPO}/releases`; primary.removeAttribute('aria-disabled')
-    meta.textContent = `Could not read the latest release (${e.message}).`
-  }
+    const main = found.find((k) => k.key === detect()) || found[0]
+    if (!main) { label.textContent = S.none; return }
+    btn.href = main.asset.browser_download_url; btn.removeAttribute('aria-disabled')
+    label.textContent = S.for.replace('{label}', S.kinds[main.key])
+    const date = rel.published_at ? new Date(rel.published_at).toLocaleDateString(S.lang, { year: 'numeric', month: 'long', day: 'numeric' }) : ''
+    meta.textContent = `${rel.tag_name.replace(/^v/, S.lang === 'es' ? 'versión ' : 'version ')} · ${mb(main.asset.size)}${date ? ' · ' + date : ''} · ${S.free}`
+    const span = document.createElement('span'); span.textContent = S.others; others.appendChild(span)
+    for (const k of found) { if (k === main) continue; const a = document.createElement('a'); a.href = k.asset.browser_download_url; a.textContent = S.kinds[k.key]; others.appendChild(a) }
+    const sums = rel.assets.find((a) => a.name === 'SHA256SUMS.txt'); if (sums) { const a = document.createElement('a'); a.href = sums.browser_download_url; a.textContent = S.checksums; others.appendChild(a) }
+    for (const el of document.querySelectorAll('[data-release-url]')) el.href = rel.html_url
+  } catch (e) { label.textContent = S.error; btn.href = `https://github.com/${REPO}/releases`; btn.removeAttribute('aria-disabled'); meta.textContent = S.errorHint.replace('{err}', e.message) }
 })()
 </script>
+
+  <footer>
+    <span>Made by Manu Hurtado. The app is free to use; the source code is private.</span>
+    <a href="guide.html">Guide</a>
+    <a href="https://github.com/MHGuitarte/ygd-editor-releases/releases">All versions</a>
+    <a href="https://github.com/MHGuitarte/ygd-editor-releases/issues">Report a problem</a>
+    <a href="es/index.html?lang=es">Español</a>
+  </footer>
+</div>
 </body>
 </html>

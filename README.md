@@ -3,11 +3,15 @@
 Desktop app for managing git worktrees and the AI agent sessions running inside them, for macOS,
 Windows and Linux.
 
-**Download:** <https://mhguitarte.github.io/ygd-editor-releases/> · **All versions:** [Releases](../../releases)
+**Download:** <https://mhguitarte.github.io/ygd-editor-releases/> · **User guide:** [English](https://mhguitarte.github.io/ygd-editor-releases/guide.html) · [Español](https://mhguitarte.github.io/ygd-editor-releases/es/guide.html) · **All versions:** [Releases](../../releases)
 
-This repository holds the installers, the update manifests the app reads, and the download page.
-The source code is developed in a private repository; questions and bug reports are welcome in
+This repository holds the installers, the update manifests the app reads, and the download site
+(English and Spanish; the page picks your browser's language and remembers your choice). The
+source code is developed in a private repository; questions and bug reports are welcome in
 [Issues](../../issues).
+
+The site is generated: edit `tools/build.py` (both languages live there), run `python3 tools/build.py`
+and commit the output. Screenshots are in `assets/img/`.
 
 ## Is my download genuine?
 
