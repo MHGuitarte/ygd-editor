@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ygd-editor — indir</title>
+<meta name="description" content="ygd-editor: yapay zekâ kodlama ajanlarını ayrı git worktree’lerinde çalıştır, değişikliklerini incele ve yayınla; hepsi tek pencereden. macOS, Windows ve Linux için ücretsiz.">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="en" href="../index.html">
+<link rel="alternate" hreflang="es" href="../es/index.html">
+<link rel="alternate" hreflang="it" href="../it/index.html">
+<link rel="alternate" hreflang="pl" href="../pl/index.html">
+<link rel="alternate" hreflang="fr" href="../fr/index.html">
+<link rel="alternate" hreflang="de" href="../de/index.html">
+<link rel="alternate" hreflang="x-default" href="../index.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<script>
+(() => { try { const q = new URLSearchParams(location.search).get('lang'); if (q && ["en", "es", "it", "pl", "fr", "de", "tr"].includes(q)) localStorage.setItem('ygd-lang', q) } catch (e) {} })()
+</script>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="index.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  
+  <defs>
+    <clipPath id="tile"><rect x="100" y="100" width="824" height="824" rx="184"/></clipPath>
+  </defs>
+  <rect x="100" y="100" width="824" height="824" rx="184" fill="#f2f2f3"/>
+  <g clip-path="url(#tile)">
+    <rect x="100" y="100" width="824" height="824" fill="#f2f2f3"/>
+  </g>
+  <g transform="translate(232 232) scale(23.333)" fill="none" stroke="#5980a6" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2.5" y="2.5" width="19" height="19"/>
+    <path d="M2.5 8h19"/>
+    <path d="M6 5.25h.01M9 5.25h.01"/>
+    <path d="M8 12l3.5 3.5L15.5 11"/>
+    <path d="M18 17.5H6"/>
+  </g>
+</svg>
+<span>ygd-editor</span></a>
+    <nav>
+      <a href="index.html#download" aria-current="page">İndir</a>
+      <a href="guide.html">Kılavuz</a>
+      <a href="releases.html">Tüm sürümler</a>
+      <a href="https://github.com/MHGuitarte/ygd-editor/issues">Sorun bildir</a>
+    </nav>
+    <label class="lang"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><select aria-label="Dil" onchange="location.href=this.value"><option value="../index.html?lang=en">English</option><option value="../es/index.html?lang=es">Español</option><option value="../it/index.html?lang=it">Italiano</option><option value="../pl/index.html?lang=pl">Polski</option><option value="../fr/index.html?lang=fr">Français</option><option value="../de/index.html?lang=de">Deutsch</option><option value="../tr/index.html?lang=tr" selected>Türkçe</option></select></label>
+  </header>
+
+  <main>
+    <div class="hero" id="download">
+      <h1>Her göreve kendi dalını ve kendi yapay zekâ ajanını ver — ve hepsini gözünün önünde tut.</h1>
+      <p class="lead">ygd-editor her görevi kendi git worktree’sinde açar, içinde bir kodlama ajanı çalıştırır (Claude Code, Codex veya Gemini CLI) ve pencereden çıkmadan değişiklikleri incelemene, commit ve push yapmana ve pull request açmana izin verir. macOS, Windows ve Linux için ücretsiz.</p>
+      <div class="dl">
+        <a id="dl" class="btn" href="releases.html" aria-disabled="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg><span id="dl-label">En son sürüm aranıyor…</span></a>
+        <div id="dl-meta" class="meta"></div>
+        <div id="dl-others" class="others"></div>
+      </div>
+      <figure class="shot"><img src="../assets/img/console.png" alt="Konsol: solda worktree’ler, ortada değişiklikler ve diff, sağda ajan oturumu." width="1440" height="900"><figcaption>Konsol: solda worktree’ler, ortada değişiklikler ve diff, sağda ajan oturumu.</figcaption></figure>
+    </div>
+
+    <section id="what"><h2>Neler sunuyor</h2><div class="cards"><div class="card"><h3>Her göreve bir worktree</h3><p>Her dalın kendi klasörü var; ajanlar birbirinin ayağına basmaz ve hiçbir şeyi stash’lemeden görev değiştirirsin.</p></div><div class="card"><h3>Ajanlar kodun olduğu yerde</h3><p>Claude Code, Codex veya Gemini CLI’ı bir worktree’nin içinde başlat, çalışmasını izle, sorularını yanıtla ve planlar değişince oturumu başka bir worktree’ye devret.</p></div><div class="card"><h3>Yerinden kalkmadan incele ve yayınla</h3><p>Dosyaları stage’e al, diff’i oku, ajandan bir seçimi açıklamasını veya değiştirmesini iste, commit ve push yap, pull request’i aynı ekrandan aç.</p></div><div class="card"><h3>İşine karışmaz</h3><p>Seni bekleyen tüm oturumlar için tek bir gelen kutusu, isteğe bağlı masaüstü bildirimleri ve senin belirlediğin limitlerle günlük harcama göstergesi.</p></div></div></section>
+
+    <section id="install"><h2>Bir dakikada kur</h2><p class="lead" style="font-size:17px">Bilgisayarın ilk seferinde seni uyaracak. Bu beklenen bir şey: kimse Apple’a ya da Microsoft’a sertifika parası ödemedi ve uyarı eksik evrak işiyle ilgili, uygulamanın yaptığı bir şeyle değil. Şöyle geçilir — bir kez, ve o bilgisayarda bir daha asla.</p>
+      <div class="steps" style="margin-top:18px"><div class="card"><h3>macOS</h3><ol><li>İndirdiğin <code>.dmg</code> dosyasını aç. Bir pencere bu adımları senin dilinde gösterir — <em>Devam</em>’a tıkla — sonra <strong>ygd-editor</strong>’ü Uygulamalar klasörüne sürükle.</li><li>Uygulamayı aç. macOS uygulamayı <em>doğrulayamadığını</em> söyler ve <em>Çöp Sepeti’ne Taşı</em> ya da <em>Bitti</em> seçeneklerini sunar: <strong>Bitti</strong>’ye tıkla.</li><li><strong>Sistem Ayarları › Gizlilik ve Güvenlik</strong>’i aç, <em>Güvenlik</em> bölümüne kadar in ve ygd-editor’ün yanındaki <strong>Yine de Aç</strong>’a tıkla. Parolanla onayla. Hepsi bu — macOS bir daha sormaz.</li><li>macOS 14 veya daha eskisinde <strong>uygulamaya sağ tıkla › Aç</strong> aynı şeyi tek adımda yapar.</li><li>Hangi Mac’e sahip olduğundan emin değil misin? Apple menüsü › Bu Mac Hakkında: “Apple M…” yazıyorsa Apple Silicon, “Intel” geçiyorsa Intel.</li></ol></div><div class="card"><h3>Windows</h3><ol><li>Yükleyiciyi çalıştır. SmartScreen “Windows bilgisayarınızı korudu” dediğinde <strong>Ek bilgi</strong>’ye, sonra <strong>Yine de çalıştır</strong>’a tıkla.</li><li>Gösterilen yayımcı <em>ygd-editor release signing</em> — o biziz. İstersen kurulum klasörünü seç ve bitir.</li><li>Uygulama Başlat menüsünde ygd-editor olarak görünür.</li></ol></div><div class="card"><h3>Linux</h3><ol><li><strong>AppImage:</strong> çalıştırılabilir yap (<code>chmod +x ygd-editor-*.AppImage</code>) ve çalıştır. FUSE hakkında şikâyet ederse <code>--appimage-extract-and-run</code> ile çalıştır.</li><li><strong>Debian / Ubuntu:</strong> <code>sudo apt install ./ygd-editor-*.deb</code>, sonra uygulama menünde bul.</li></ol></div></div>
+      <div class="note"><h3>Neye ihtiyacın var</h3><p>Bilgisayarında Git ve en az bir sağlayıcıda bir hesap. <a href="https://github.com/openai/codex">Codex</a> ve <a href="https://github.com/google-gemini/gemini-cli">Gemini CLI</a> uygulamanın içinde gelir, kurulacak bir şey yok; lisansı birlikte dağıtılmasına izin vermeyen <a href="https://docs.anthropic.com/en/docs/claude-code">Claude Code</a> için Ayarlar › Yapay zekâ sağlayıcıları, Anthropic’in resmî yükleyicisini senin için çalıştıran tek tıklık bir seçenek sunar. Bir sağlayıcıyı bağlamak, giriş sayfasını tarayıcında açar. Pull request’ler için GitHub’da <code>gh</code>, GitLab’da <code>glab</code>.</p></div>
+    </section>
+
+    <section id="updates"><h2>Güncellemeler kendi kendine olur</h2><p>Açılıştan kısa süre sonra uygulama yeni bir sürüm olup olmadığına bakar, sessizce indirir ve “Güncellemek için yeniden başlat” seçeneğini sunar. Ayarlar › Bildirimler’de ayrıca bir “Güncellemeleri kontrol et” düğmesi ve istersen, hiçbir şey çalışmıyorken güncellemeleri kendi başına kurma seçeneği var. Güncellemeden sonra uygulama hangi sürümde olduğunu söyler ve nelerin değiştiğine bağlantı verir.</p></section>
+
+    <section id="guide"><div class="note"><h3>Yeni misin?</h3><p><a href="guide.html">Kullanım kılavuzu</a> ilk on dakikayı adım adım anlatır: bir depo açmak, bir worktree oluşturmak, bir ajan başlatmak, sonucu incelemek ve yayınlamak.</p></div></section>
+
+    <section id="genuine"><h2>İndirdiğim dosya gerçek mi?</h2><p>Birbirinden bağımsız iki kontrol; ikisi de bir isme güvenmeye dayanmaz. Bunları çalıştırman gerekmez; isteyenler için buradalar.</p>
+      <details><summary>İndirdiğim dosya gerçek mi? — teknik ayrıntılar</summary>
+        <p><strong>Köken.</strong> Her sürüm, projenin kendi yayın iş akışı tarafından <a href="https://www.sigstore.dev/">Sigstore</a> ile imzalanmış bir <code>SHA256SUMS.txt</code> dosyasıyla gelir. <code>cosign</code> kuruluyken:</p>
+<pre>cosign verify-blob --bundle SHA256SUMS.txt.sigstore.json \
+  --certificate-identity-regexp '^https://github.com/MHGuitarte/ygd-editor(-app)?/\.github/workflows/release\.yml@refs/tags/v' \
+  --certificate-oidc-issuer https://token.actions.githubusercontent.com SHA256SUMS.txt
+sha256sum --check --ignore-missing SHA256SUMS.txt   # macOS: shasum -a 256 -c SHA256SUMS.txt</pre>
+        <p><strong>Kod imzası.</strong> macOS uygulaması ve Windows yükleyicisi projenin sertifikasıyla imzalanmıştır (<a href="../release-signing.pem">açık anahtar</a>). İsmi değil parmak izini karşılaştır — bir sertifikaya herkes istediği ismi verebilir.</p>
+        <span class="fp">SHA-256 46:C5:62:27:2A:5C:22:9E:D7:85:E1:A3:0D:47:2A:A3:5B:CE:AC:F0:7D:E4:D8:A3:49:23:C9:7B:D3:74:C3:AB</span>
+        <span class="fp">SHA-1 (macOS codesign · Windows thumbprint) 79A40643BDFE500AB6730154B03B336C1809C57C</span>
+<pre># macOS
+codesign --verify --deep --strict /Applications/ygd-editor.app &amp;&amp; codesign -dvv /Applications/ygd-editor.app 2&gt;&amp;1 | grep Authority
+# Windows (PowerShell)
+(Get-AuthenticodeSignature .\ygd-editor-*-setup.exe).SignerCertificate.Thumbprint</pre>
+      </details>
+    </section>
+  </main>
+  <script>
+(async () => {
+  const REPO = 'MHGuitarte/ygd-editor', S = {"lang": "tr", "none": "Henüz yayınlanmış sürüm yok", "noneHint": "İlk sürüm yolda.", "for": "{label} için indir", "error": "Tüm sürümleri gör", "errorHint": "En son sürüm okunamadı ({err}). Sürümler sayfasında tüm indirmeler var.", "others": "Diğer sistemler:", "checksums": "Sağlama toplamları", "free": "Ücretsiz · hesap gerekmez · kendini günceller", "version": "sürüm {v}", "kinds": {"mac-arm64": "macOS · Apple Silicon (M1 ve sonrası)", "mac-x64": "macOS · Intel", "win-x64": "Windows", "linux-appimage": "Linux · AppImage", "linux-deb": "Linux · Debian / Ubuntu"}}
+  const kinds = [
+    { key: 'mac-arm64', test: (n) => /-mac-arm64\.dmg$/.test(n) }, { key: 'mac-x64', test: (n) => /-mac-x64\.dmg$/.test(n) },
+    { key: 'win-x64', test: (n) => /-win-x64-setup\.exe$/.test(n) }, { key: 'linux-appimage', test: (n) => /\.AppImage$/.test(n) }, { key: 'linux-deb', test: (n) => /\.deb$/.test(n) },
+  ]
+  const detect = () => { const ua = navigator.userAgent, plat = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || ''
+    if (/Windows/i.test(plat) || /Windows/.test(ua)) return 'win-x64'; if (/Mac/i.test(plat) || /Macintosh/.test(ua)) return 'mac-arm64'; if (/Linux/i.test(plat) || /Linux/.test(ua)) return 'linux-appimage'; return null }
+  const btn = document.getElementById('dl'), label = document.getElementById('dl-label'), meta = document.getElementById('dl-meta'), others = document.getElementById('dl-others')
+  const mb = (b) => (b / 1e6).toFixed(0) + ' MB'
+  try {
+    const res = await fetch(`https://api.github.com/repos/${REPO}/releases/latest`, { headers: { Accept: 'application/vnd.github+json' } })
+    if (res.status === 404) { label.textContent = S.none; meta.textContent = S.noneHint; return }
+    if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    const rel = await res.json()
+    const found = kinds.map((k) => ({ ...k, asset: rel.assets.find((a) => k.test(a.name)) })).filter((k) => k.asset)
+    const main = found.find((k) => k.key === detect()) || found[0]
+    if (!main) { label.textContent = S.none; return }
+    btn.href = main.asset.browser_download_url; btn.removeAttribute('aria-disabled')
+    label.textContent = S.for.replace('{label}', S.kinds[main.key])
+    const date = rel.published_at ? new Date(rel.published_at).toLocaleDateString(S.lang, { year: 'numeric', month: 'long', day: 'numeric' }) : ''
+    meta.textContent = `${S.version.replace('{v}', rel.tag_name.replace(/^v/, ''))} · ${mb(main.asset.size)}${date ? ' · ' + date : ''} · ${S.free}`
+    const span = document.createElement('span'); span.textContent = S.others; others.appendChild(span)
+    for (const k of found) { if (k === main) continue; const a = document.createElement('a'); a.href = k.asset.browser_download_url; a.textContent = S.kinds[k.key]; others.appendChild(a) }
+    const sums = rel.assets.find((a) => a.name === 'SHA256SUMS.txt'); if (sums) { const a = document.createElement('a'); a.href = sums.browser_download_url; a.textContent = S.checksums; others.appendChild(a) }
+    for (const el of document.querySelectorAll('[data-release-url]')) el.href = rel.html_url
+  } catch (e) { label.textContent = S.error; btn.href = 'releases.html'; btn.removeAttribute('aria-disabled'); meta.textContent = S.errorHint.replace('{err}', e.message) }
+})()
+</script>
+
+  <footer>
+    <span>Manu Hurtado tarafından yapıldı. Uygulama ücretsizdir; kaynak kodu kapalıdır.</span>
+    <a href="guide.html">Kılavuz</a>
+    <a href="releases.html">Tüm sürümler</a>
+    <a href="https://github.com/MHGuitarte/ygd-editor/issues">Sorun bildir</a>
+    <div class="langs"><a href="../index.html?lang=en" hreflang="en">English</a><a href="../es/index.html?lang=es" hreflang="es">Español</a><a href="../it/index.html?lang=it" hreflang="it">Italiano</a><a href="../pl/index.html?lang=pl" hreflang="pl">Polski</a><a href="../fr/index.html?lang=fr" hreflang="fr">Français</a><a href="../de/index.html?lang=de" hreflang="de">Deutsch</a><a href="../tr/index.html?lang=tr" hreflang="tr" aria-current="true">Türkçe</a></div>
+  </footer>
+</div>
+</body>
+</html>

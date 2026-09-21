@@ -3,15 +3,20 @@
 Desktop app for managing git worktrees and the AI agent sessions running inside them, for macOS,
 Windows and Linux.
 
-**Download:** <https://mhguitarte.github.io/ygd-editor/> · **User guide:** [English](https://mhguitarte.github.io/ygd-editor/guide.html) · [Español](https://mhguitarte.github.io/ygd-editor/es/guide.html) · **All versions:** [Releases](../../releases)
+**Download:** <https://mhguitarte.github.io/ygd-editor/> · **User guide:** <https://mhguitarte.github.io/ygd-editor/guide.html> · **All versions:** <https://mhguitarte.github.io/ygd-editor/releases.html> (or the raw [Releases](../../releases))
 
-This repository holds the installers, the update manifests the app reads, and the download site
-(English and Spanish; the page picks your browser's language and remembers your choice). The
-source code is developed in a private repository; questions and bug reports are welcome in
+This repository holds the installers, the update manifests the app reads, and the download site: the
+download page, the user guide and the list of every version, in the seven languages of the app —
+English, Español, Italiano, Polski, Français, Deutsch, Türkçe. English is at the root, the others under
+`<code>/`; the first visit follows the browser's language and the menu remembers a choice. The source
+code is developed in a private repository; questions and bug reports are welcome in
 [Issues](../../issues).
 
-The site is generated: edit `tools/build.py` (both languages live there), run `python3 tools/build.py`
-and commit the output. Screenshots are in `assets/img/`.
+The site is generated: the structure is `tools/build.py`, the strings are one file per language in
+`tools/strings/` (`en.py` is the reference; a language whose file is missing is simply not built).
+Edit, run `python3 tools/build.py` and commit the output. Screenshots are in `assets/img/`. The
+versions page and the download button read the releases through the GitHub API in the browser, so a
+new release needs no rebuild.
 
 ## Is my download genuine?
 

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ygd-editor — download</title>
+<meta name="description" content="ygd-editor: esegui agenti di programmazione con IA in worktree git separati, rivedi le loro modifiche e pubblicale, tutto da una sola finestra. Gratis per macOS, Windows e Linux.">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="en" href="../index.html">
+<link rel="alternate" hreflang="es" href="../es/index.html">
+<link rel="alternate" hreflang="pl" href="../pl/index.html">
+<link rel="alternate" hreflang="fr" href="../fr/index.html">
+<link rel="alternate" hreflang="de" href="../de/index.html">
+<link rel="alternate" hreflang="tr" href="../tr/index.html">
+<link rel="alternate" hreflang="x-default" href="../index.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<script>
+(() => { try { const q = new URLSearchParams(location.search).get('lang'); if (q && ["en", "es", "it", "pl", "fr", "de", "tr"].includes(q)) localStorage.setItem('ygd-lang', q) } catch (e) {} })()
+</script>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="index.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  
+  <defs>
+    <clipPath id="tile"><rect x="100" y="100" width="824" height="824" rx="184"/></clipPath>
+  </defs>
+  <rect x="100" y="100" width="824" height="824" rx="184" fill="#f2f2f3"/>
+  <g clip-path="url(#tile)">
+    <rect x="100" y="100" width="824" height="824" fill="#f2f2f3"/>
+  </g>
+  <g transform="translate(232 232) scale(23.333)" fill="none" stroke="#5980a6" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2.5" y="2.5" width="19" height="19"/>
+    <path d="M2.5 8h19"/>
+    <path d="M6 5.25h.01M9 5.25h.01"/>
+    <path d="M8 12l3.5 3.5L15.5 11"/>
+    <path d="M18 17.5H6"/>
+  </g>
+</svg>
+<span>ygd-editor</span></a>
+    <nav>
+      <a href="index.html#download" aria-current="page">Scarica</a>
+      <a href="guide.html">Guida</a>
+      <a href="releases.html">Tutte le versioni</a>
+      <a href="https://github.com/MHGuitarte/ygd-editor/issues">Segnala un problema</a>
+    </nav>
+    <label class="lang"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><select aria-label="Lingua" onchange="location.href=this.value"><option value="../index.html?lang=en">English</option><option value="../es/index.html?lang=es">Español</option><option value="../it/index.html?lang=it" selected>Italiano</option><option value="../pl/index.html?lang=pl">Polski</option><option value="../fr/index.html?lang=fr">Français</option><option value="../de/index.html?lang=de">Deutsch</option><option value="../tr/index.html?lang=tr">Türkçe</option></select></label>
+  </header>
+
+  <main>
+    <div class="hero" id="download">
+      <h1>Dai a ogni compito il suo branch e il suo agente di IA, e tienili tutti sotto controllo.</h1>
+      <p class="lead">ygd-editor apre ogni compito nel suo worktree git, ci esegue dentro un agente di programmazione (Claude Code, Codex o Gemini CLI) e ti lascia rivedere le modifiche, fare commit, push e aprire la pull request senza uscire dalla finestra. Gratis, per macOS, Windows e Linux.</p>
+      <div class="dl">
+        <a id="dl" class="btn" href="releases.html" aria-disabled="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg><span id="dl-label">Ricerca dell’ultima versione…</span></a>
+        <div id="dl-meta" class="meta"></div>
+        <div id="dl-others" class="others"></div>
+      </div>
+      <figure class="shot"><img src="../assets/img/console.png" alt="La console: i worktree a sinistra, modifiche e diff al centro, la sessione dell’agente a destra." width="1440" height="900"><figcaption>La console: i worktree a sinistra, modifiche e diff al centro, la sessione dell’agente a destra.</figcaption></figure>
+    </div>
+
+    <section id="what"><h2>Cosa ottieni</h2><div class="cards"><div class="card"><h3>Un worktree per compito</h3><p>Ogni branch ha la sua cartella: gli agenti non si pestano mai i piedi e cambi compito senza mettere niente nello stash.</p></div><div class="card"><h3>Gli agenti dove sta il codice</h3><p>Avvia Claude Code, Codex o Gemini CLI dentro un worktree, guardalo lavorare, rispondi alle sue domande e passa una sessione a un altro worktree se i piani cambiano.</p></div><div class="card"><h3>Rivedi e pubblica sul posto</h3><p>Metti i file in stage, leggi il diff, chiedi all’agente di spiegare o modificare una selezione, fai commit, push e apri la pull request dalla stessa schermata.</p></div><div class="card"><h3>Non ti intralcia</h3><p>Una sola casella per tutte le sessioni che aspettano te, notifiche desktop facoltative e un contatore della spesa di oggi con i limiti che decidi tu.</p></div></div></section>
+
+    <section id="install"><h2>Installazione in un minuto</h2><p class="lead" style="font-size:17px">Il tuo computer ti avviserà la prima volta. È normale: nessuno ha pagato Apple o Microsoft per un certificato, e l’avviso riguarda quella pratica mancante, non ciò che fa l’app. Ecco come superarlo: una volta sola, e mai più su quel computer.</p>
+      <div class="steps" style="margin-top:18px"><div class="card"><h3>macOS</h3><ol><li>Apri il <code>.dmg</code> scaricato. Una finestra mostra questi passaggi nella tua lingua — fai clic su <em>Continua</em> — poi trascina <strong>ygd-editor</strong> in Applicazioni.</li><li>Aprila. macOS dice che <em>non è stato possibile verificare</em> l’app e offre <em>Sposta nel Cestino</em> o <em>Fine</em>: fai clic su <strong>Fine</strong>.</li><li>Apri <strong>Impostazioni di Sistema › Privacy e sicurezza</strong>, scorri fino a <em>Sicurezza</em> e fai clic su <strong>Apri comunque</strong> accanto a ygd-editor. Conferma con la tua password. Fatto: macOS non lo chiederà più.</li><li>Su macOS 14 o precedente, <strong>clic destro sull’app › Apri</strong> fa lo stesso in un passaggio.</li><li>Non sai che Mac hai? Menu Apple › Informazioni su questo Mac: «Apple M…» è Apple Silicon, se c’è scritto «Intel» è Intel.</li></ol></div><div class="card"><h3>Windows</h3><ol><li>Esegui l’installer. Quando SmartScreen dice «PC protetto da Windows», fai clic su <strong>Ulteriori informazioni</strong> e poi su <strong>Esegui comunque</strong>.</li><li>L’autore indicato è <em>ygd-editor release signing</em>: siamo noi. Scegli la cartella di installazione se vuoi e concludi.</li><li>L’app compare nel menu Start come ygd-editor.</li></ol></div><div class="card"><h3>Linux</h3><ol><li><strong>AppImage:</strong> rendilo eseguibile (<code>chmod +x ygd-editor-*.AppImage</code>) ed eseguilo. Se si lamenta di FUSE, avvialo con <code>--appimage-extract-and-run</code>.</li><li><strong>Debian / Ubuntu:</strong> <code>sudo apt install ./ygd-editor-*.deb</code>, poi cercalo nel menu delle applicazioni.</li></ol></div></div>
+      <div class="note"><h3>Cosa ti serve</h3><p>Git sul tuo computer e un account presso almeno un provider. <a href="https://github.com/openai/codex">Codex</a> e <a href="https://github.com/google-gemini/gemini-cli">Gemini CLI</a> sono inclusi nell’app, niente da installare; per <a href="https://docs.anthropic.com/en/docs/claude-code">Claude Code</a>, la cui licenza non ne consente la distribuzione, Impostazioni › Provider di IA offre un clic che esegue per te l’installer ufficiale di Anthropic. Collegare un provider apre la sua pagina di accesso nel browser. Per le pull request, <code>gh</code> di GitHub o <code>glab</code> di GitLab.</p></div>
+    </section>
+
+    <section id="updates"><h2>Gli aggiornamenti si gestiscono da soli</h2><p>Poco dopo l’avvio l’app cerca una nuova versione, la scarica in silenzio e propone «Riavvia per aggiornare». Impostazioni › Notifiche ha anche un pulsante «Cerca aggiornamenti» e, se preferisci, un’opzione per installare gli aggiornamenti da sola quando non c’è niente in corso. Dopo un aggiornamento, l’app ti dice che versione hai e rimanda a cosa è cambiato.</p></section>
+
+    <section id="guide"><div class="note"><h3>Prima volta qui?</h3><p>La <a href="guide.html">guida per l’utente</a> ripercorre i primi dieci minuti: aprire un repository, creare un worktree, avviare un agente, rivedere e pubblicare il risultato.</p></div></section>
+
+    <section id="genuine"><h2>Il mio download è autentico?</h2><p>Due verifiche indipendenti, e nessuna delle due si basa sulla fiducia in un nome. Non sei obbligato a farle; sono qui per chi vuole.</p>
+      <details><summary>Il mio download è autentico? — i dettagli tecnici</summary>
+        <p><strong>Provenienza.</strong> Ogni versione arriva con <code>SHA256SUMS.txt</code>, firmato tramite <a href="https://www.sigstore.dev/">Sigstore</a> dal flusso di rilascio del progetto stesso. Con <code>cosign</code> installato:</p>
+<pre>cosign verify-blob --bundle SHA256SUMS.txt.sigstore.json \
+  --certificate-identity-regexp '^https://github.com/MHGuitarte/ygd-editor(-app)?/\.github/workflows/release\.yml@refs/tags/v' \
+  --certificate-oidc-issuer https://token.actions.githubusercontent.com SHA256SUMS.txt
+sha256sum --check --ignore-missing SHA256SUMS.txt   # macOS: shasum -a 256 -c SHA256SUMS.txt</pre>
+        <p><strong>Firma del codice.</strong> L’app per macOS e l’installer per Windows sono firmati con il certificato del progetto (<a href="../release-signing.pem">chiave pubblica</a>). Confronta l’impronta, non il nome: chiunque può chiamare un certificato come vuole.</p>
+        <span class="fp">SHA-256 46:C5:62:27:2A:5C:22:9E:D7:85:E1:A3:0D:47:2A:A3:5B:CE:AC:F0:7D:E4:D8:A3:49:23:C9:7B:D3:74:C3:AB</span>
+        <span class="fp">SHA-1 (macOS codesign · Windows thumbprint) 79A40643BDFE500AB6730154B03B336C1809C57C</span>
+<pre># macOS
+codesign --verify --deep --strict /Applications/ygd-editor.app &amp;&amp; codesign -dvv /Applications/ygd-editor.app 2&gt;&amp;1 | grep Authority
+# Windows (PowerShell)
+(Get-AuthenticodeSignature .\ygd-editor-*-setup.exe).SignerCertificate.Thumbprint</pre>
+      </details>
+    </section>
+  </main>
+  <script>
+(async () => {
+  const REPO = 'MHGuitarte/ygd-editor', S = {"lang": "it", "none": "Ancora nessuna versione pubblicata", "noneHint": "La prima è in arrivo.", "for": "Scarica per {label}", "error": "Vedi tutte le versioni", "errorHint": "Non è stato possibile leggere l’ultima versione ({err}). Nella pagina delle versioni ci sono tutti i download.", "others": "Altri sistemi:", "checksums": "Checksum", "free": "Gratis · senza account · si aggiorna da solo", "version": "versione {v}", "kinds": {"mac-arm64": "macOS · Apple Silicon (M1 e successivi)", "mac-x64": "macOS · Intel", "win-x64": "Windows", "linux-appimage": "Linux · AppImage", "linux-deb": "Linux · Debian / Ubuntu"}}
+  const kinds = [
+    { key: 'mac-arm64', test: (n) => /-mac-arm64\.dmg$/.test(n) }, { key: 'mac-x64', test: (n) => /-mac-x64\.dmg$/.test(n) },
+    { key: 'win-x64', test: (n) => /-win-x64-setup\.exe$/.test(n) }, { key: 'linux-appimage', test: (n) => /\.AppImage$/.test(n) }, { key: 'linux-deb', test: (n) => /\.deb$/.test(n) },
+  ]
+  const detect = () => { const ua = navigator.userAgent, plat = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || ''
+    if (/Windows/i.test(plat) || /Windows/.test(ua)) return 'win-x64'; if (/Mac/i.test(plat) || /Macintosh/.test(ua)) return 'mac-arm64'; if (/Linux/i.test(plat) || /Linux/.test(ua)) return 'linux-appimage'; return null }
+  const btn = document.getElementById('dl'), label = document.getElementById('dl-label'), meta = document.getElementById('dl-meta'), others = document.getElementById('dl-others')
+  const mb = (b) => (b / 1e6).toFixed(0) + ' MB'
+  try {
+    const res = await fetch(`https://api.github.com/repos/${REPO}/releases/latest`, { headers: { Accept: 'application/vnd.github+json' } })
+    if (res.status === 404) { label.textContent = S.none; meta.textContent = S.noneHint; return }
+    if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    const rel = await res.json()
+    const found = kinds.map((k) => ({ ...k, asset: rel.assets.find((a) => k.test(a.name)) })).filter((k) => k.asset)
+    const main = found.find((k) => k.key === detect()) || found[0]
+    if (!main) { label.textContent = S.none; return }
+    btn.href = main.asset.browser_download_url; btn.removeAttribute('aria-disabled')
+    label.textContent = S.for.replace('{label}', S.kinds[main.key])
+    const date = rel.published_at ? new Date(rel.published_at).toLocaleDateString(S.lang, { year: 'numeric', month: 'long', day: 'numeric' }) : ''
+    meta.textContent = `${S.version.replace('{v}', rel.tag_name.replace(/^v/, ''))} · ${mb(main.asset.size)}${date ? ' · ' + date : ''} · ${S.free}`
+    const span = document.createElement('span'); span.textContent = S.others; others.appendChild(span)
+    for (const k of found) { if (k === main) continue; const a = document.createElement('a'); a.href = k.asset.browser_download_url; a.textContent = S.kinds[k.key]; others.appendChild(a) }
+    const sums = rel.assets.find((a) => a.name === 'SHA256SUMS.txt'); if (sums) { const a = document.createElement('a'); a.href = sums.browser_download_url; a.textContent = S.checksums; others.appendChild(a) }
+    for (const el of document.querySelectorAll('[data-release-url]')) el.href = rel.html_url
+  } catch (e) { label.textContent = S.error; btn.href = 'releases.html'; btn.removeAttribute('aria-disabled'); meta.textContent = S.errorHint.replace('{err}', e.message) }
+})()
+</script>
+
+  <footer>
+    <span>Fatto da Manu Hurtado. L’app è gratuita; il codice sorgente è privato.</span>
+    <a href="guide.html">Guida</a>
+    <a href="releases.html">Tutte le versioni</a>
+    <a href="https://github.com/MHGuitarte/ygd-editor/issues">Segnala un problema</a>
+    <div class="langs"><a href="../index.html?lang=en" hreflang="en">English</a><a href="../es/index.html?lang=es" hreflang="es">Español</a><a href="../it/index.html?lang=it" hreflang="it" aria-current="true">Italiano</a><a href="../pl/index.html?lang=pl" hreflang="pl">Polski</a><a href="../fr/index.html?lang=fr" hreflang="fr">Français</a><a href="../de/index.html?lang=de" hreflang="de">Deutsch</a><a href="../tr/index.html?lang=tr" hreflang="tr">Türkçe</a></div>
+  </footer>
+</div>
+</body>
+</html>

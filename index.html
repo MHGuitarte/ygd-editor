@@ -7,14 +7,22 @@
 <meta name="description" content="ygd-editor: run AI coding agents in separate git worktrees, review their changes and ship them, all from one window. Free for macOS, Windows and Linux.">
 <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
 <link rel="alternate" hreflang="es" href="es/index.html">
+<link rel="alternate" hreflang="it" href="it/index.html">
+<link rel="alternate" hreflang="pl" href="pl/index.html">
+<link rel="alternate" hreflang="fr" href="fr/index.html">
+<link rel="alternate" hreflang="de" href="de/index.html">
+<link rel="alternate" hreflang="tr" href="tr/index.html">
+<link rel="alternate" hreflang="x-default" href="index.html">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <script>
 (() => { try {
-  const q = new URLSearchParams(location.search).get('lang'); if (q) { localStorage.setItem('ygd-lang', q) }
-  const pick = localStorage.getItem('ygd-lang') || ((navigator.language || '').toLowerCase().startsWith('es') ? 'es' : 'en')
-  if (pick === 'es' && !location.pathname.includes('/es/')) location.replace('es/' + location.pathname.split('/').pop().replace(/^$/, 'index.html') + location.hash)
+  const LANGS = ["en", "es", "it", "pl", "fr", "de", "tr"]
+  const q = new URLSearchParams(location.search).get('lang'); if (q && LANGS.includes(q)) localStorage.setItem('ygd-lang', q)
+  const wanted = (navigator.languages || [navigator.language || '']).map((l) => l.toLowerCase().slice(0, 2)).find((l) => LANGS.includes(l))
+  const pick = localStorage.getItem('ygd-lang') || wanted || 'en'
+  if (pick !== 'en') location.replace(pick + '/' + (location.pathname.split('/').pop() || 'index.html') + location.hash)
 } catch (e) {} })()
 </script>
 </head>
@@ -40,12 +48,12 @@
 </svg>
 <span>ygd-editor</span></a>
     <nav>
-      <a href="index.html#download">Download</a>
+      <a href="index.html#download" aria-current="page">Download</a>
       <a href="guide.html">Guide</a>
-      <a href="https://github.com/MHGuitarte/ygd-editor/releases">All versions</a>
+      <a href="releases.html">All versions</a>
       <a href="https://github.com/MHGuitarte/ygd-editor/issues">Report a problem</a>
     </nav>
-    <a class="lang" href="es/index.html?lang=es" hreflang="es">Español</a>
+    <label class="lang"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><select aria-label="Language" onchange="location.href=this.value"><option value="index.html?lang=en" selected>English</option><option value="es/index.html?lang=es">Español</option><option value="it/index.html?lang=it">Italiano</option><option value="pl/index.html?lang=pl">Polski</option><option value="fr/index.html?lang=fr">Français</option><option value="de/index.html?lang=de">Deutsch</option><option value="tr/index.html?lang=tr">Türkçe</option></select></label>
   </header>
 
   <main>
@@ -53,7 +61,7 @@
       <h1>Give every task its own branch and its own AI agent — and keep an eye on all of them.</h1>
       <p class="lead">ygd-editor opens each task in its own git worktree, runs a coding agent inside it (Claude Code, Codex or Gemini CLI), and lets you review the changes, commit, push and open the pull request without leaving the window. Free, for macOS, Windows and Linux.</p>
       <div class="dl">
-        <a id="dl" class="btn" href="https://github.com/MHGuitarte/ygd-editor/releases" aria-disabled="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg><span id="dl-label">Finding the latest version…</span></a>
+        <a id="dl" class="btn" href="releases.html" aria-disabled="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg><span id="dl-label">Finding the latest version…</span></a>
         <div id="dl-meta" class="meta"></div>
         <div id="dl-others" class="others"></div>
       </div>
@@ -90,7 +98,7 @@ codesign --verify --deep --strict /Applications/ygd-editor.app &amp;&amp; codesi
   </main>
   <script>
 (async () => {
-  const REPO = 'MHGuitarte/ygd-editor', S = {"lang": "en", "none": "No version published yet", "noneHint": "The first release is on its way.", "for": "Download for {label}", "error": "See all versions", "errorHint": "Could not read the latest version ({err}). The releases page has every download.", "others": "Other systems:", "checksums": "Checksums", "free": "Free · no account needed · updates itself", "kinds": {"mac-arm64": "macOS · Apple Silicon (M1 and later)", "mac-x64": "macOS · Intel", "win-x64": "Windows", "linux-appimage": "Linux · AppImage", "linux-deb": "Linux · Debian / Ubuntu"}}
+  const REPO = 'MHGuitarte/ygd-editor', S = {"lang": "en", "none": "No version published yet", "noneHint": "The first release is on its way.", "for": "Download for {label}", "error": "See all versions", "errorHint": "Could not read the latest version ({err}). The releases page has every download.", "others": "Other systems:", "checksums": "Checksums", "free": "Free · no account needed · updates itself", "version": "version {v}", "kinds": {"mac-arm64": "macOS · Apple Silicon (M1 and later)", "mac-x64": "macOS · Intel", "win-x64": "Windows", "linux-appimage": "Linux · AppImage", "linux-deb": "Linux · Debian / Ubuntu"}}
   const kinds = [
     { key: 'mac-arm64', test: (n) => /-mac-arm64\.dmg$/.test(n) }, { key: 'mac-x64', test: (n) => /-mac-x64\.dmg$/.test(n) },
     { key: 'win-x64', test: (n) => /-win-x64-setup\.exe$/.test(n) }, { key: 'linux-appimage', test: (n) => /\.AppImage$/.test(n) }, { key: 'linux-deb', test: (n) => /\.deb$/.test(n) },
@@ -110,21 +118,21 @@ codesign --verify --deep --strict /Applications/ygd-editor.app &amp;&amp; codesi
     btn.href = main.asset.browser_download_url; btn.removeAttribute('aria-disabled')
     label.textContent = S.for.replace('{label}', S.kinds[main.key])
     const date = rel.published_at ? new Date(rel.published_at).toLocaleDateString(S.lang, { year: 'numeric', month: 'long', day: 'numeric' }) : ''
-    meta.textContent = `${rel.tag_name.replace(/^v/, S.lang === 'es' ? 'versión ' : 'version ')} · ${mb(main.asset.size)}${date ? ' · ' + date : ''} · ${S.free}`
+    meta.textContent = `${S.version.replace('{v}', rel.tag_name.replace(/^v/, ''))} · ${mb(main.asset.size)}${date ? ' · ' + date : ''} · ${S.free}`
     const span = document.createElement('span'); span.textContent = S.others; others.appendChild(span)
     for (const k of found) { if (k === main) continue; const a = document.createElement('a'); a.href = k.asset.browser_download_url; a.textContent = S.kinds[k.key]; others.appendChild(a) }
     const sums = rel.assets.find((a) => a.name === 'SHA256SUMS.txt'); if (sums) { const a = document.createElement('a'); a.href = sums.browser_download_url; a.textContent = S.checksums; others.appendChild(a) }
     for (const el of document.querySelectorAll('[data-release-url]')) el.href = rel.html_url
-  } catch (e) { label.textContent = S.error; btn.href = `https://github.com/${REPO}/releases`; btn.removeAttribute('aria-disabled'); meta.textContent = S.errorHint.replace('{err}', e.message) }
+  } catch (e) { label.textContent = S.error; btn.href = 'releases.html'; btn.removeAttribute('aria-disabled'); meta.textContent = S.errorHint.replace('{err}', e.message) }
 })()
 </script>
 
   <footer>
     <span>Made by Manu Hurtado. The app is free to use; the source code is private.</span>
     <a href="guide.html">Guide</a>
-    <a href="https://github.com/MHGuitarte/ygd-editor/releases">All versions</a>
+    <a href="releases.html">All versions</a>
     <a href="https://github.com/MHGuitarte/ygd-editor/issues">Report a problem</a>
-    <a href="es/index.html?lang=es">Español</a>
+    <div class="langs"><a href="index.html?lang=en" hreflang="en" aria-current="true">English</a><a href="es/index.html?lang=es" hreflang="es">Español</a><a href="it/index.html?lang=it" hreflang="it">Italiano</a><a href="pl/index.html?lang=pl" hreflang="pl">Polski</a><a href="fr/index.html?lang=fr" hreflang="fr">Français</a><a href="de/index.html?lang=de" hreflang="de">Deutsch</a><a href="tr/index.html?lang=tr" hreflang="tr">Türkçe</a></div>
   </footer>
 </div>
 </body>

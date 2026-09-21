@@ -8,8 +8,9 @@ a { color:var(--accent) } a:hover { text-decoration-thickness:2px }
 .top .brand { display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit; font-weight:600; font-size:19px; margin-right:auto }
 .top .brand svg { width:34px; height:34px }
 .top nav { display:flex; gap:18px; flex-wrap:wrap; font-size:15px }
-.top nav a { color:var(--ink); text-decoration:none; opacity:.85 } .top nav a:hover { opacity:1; text-decoration:underline }
-.lang { font-size:14px; border:1px solid var(--line); border-radius:999px; padding:5px 12px; text-decoration:none; color:var(--ink); background:var(--card) }
+.top nav a { color:var(--ink); text-decoration:none; opacity:.85 } .top nav a:hover { opacity:1; text-decoration:underline } .top nav a[aria-current] { opacity:1; font-weight:600 }
+.lang { position:relative; display:inline-flex; align-items:center; gap:6px; font-size:14px; border:1px solid var(--line); border-radius:999px; padding:5px 12px; color:var(--ink); background:var(--card) }
+.lang svg { width:15px; height:15px; opacity:.75 } .lang select { appearance:none; -webkit-appearance:none; border:0; background:transparent; color:inherit; font:inherit; padding-right:14px; cursor:pointer } .lang::after { content:''; position:absolute; right:12px; top:50%; width:6px; height:6px; border-right:1.5px solid var(--muted); border-bottom:1.5px solid var(--muted); transform:translateY(-70%) rotate(45deg); pointer-events:none }
 .hero { padding:36px 0 12px; display:grid; gap:22px }
 h1 { font-size:clamp(30px, 4.6vw, 44px); line-height:1.12; margin:0; letter-spacing:-.015em; font-weight:700 }
 .lead { font-size:19px; color:var(--muted); margin:0; max-width:62ch }
@@ -27,9 +28,17 @@ section { padding:44px 0 6px } h2 { font-size:28px; margin:0 0 14px; letter-spac
 .note { background:var(--soft); border-radius:14px; padding:20px 22px; margin-top:18px } .note p { margin:0 }
 details { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:6px 22px; margin-top:14px } summary { cursor:pointer; font-weight:600; padding:12px 0; font-size:18px } details[open] summary { border-bottom:1px solid var(--line); margin-bottom:8px }
 code, pre, .fp { font:14px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background:var(--code); border-radius:6px } code { padding:1px 6px } pre { padding:14px 16px; overflow-x:auto; margin:10px 0 } .fp { display:block; padding:12px 14px; word-break:break-all; margin:8px 0 }
-footer { margin-top:56px; padding:26px 0 40px; border-top:1px solid var(--line); color:var(--muted); font-size:15px; display:flex; flex-wrap:wrap; gap:8px 22px } footer a { color:inherit }
+footer { margin-top:56px; padding:26px 0 40px; border-top:1px solid var(--line); color:var(--muted); font-size:15px; display:flex; flex-wrap:wrap; gap:8px 22px } footer a { color:inherit } footer .langs { display:flex; flex-wrap:wrap; gap:6px 14px; width:100%; margin-top:4px } footer .langs a[aria-current] { color:var(--ink); font-weight:600; text-decoration:none }
 /* guide */
 .guide { display:grid; grid-template-columns:220px 1fr; gap:40px; padding-top:28px } @media (max-width: 800px) { .guide { grid-template-columns:1fr } .toc { position:static } }
 .toc { position:sticky; top:20px; align-self:start; font-size:15px } .toc strong { display:block; color:var(--muted); font-weight:600; font-size:13px; letter-spacing:.06em; text-transform:uppercase; margin-bottom:8px } .toc a { display:block; color:var(--ink); text-decoration:none; padding:4px 0; opacity:.85 } .toc a:hover { opacity:1; text-decoration:underline }
 .doc h1 { font-size:38px } .doc > p.lead { margin-bottom:8px } .doc section { padding:30px 0 0 } .doc section h2 { font-size:25px; scroll-margin-top:18px } .doc p { margin:10px 0 } .doc img { width:100%; height:auto; border-radius:12px; border:1px solid var(--line); box-shadow:var(--shadow); margin:14px 0 } .doc ol { padding-left:22px } .doc li { margin:10px 0 } .doc li::marker { color:var(--accent); font-weight:600 }
 .doc table { border-collapse:collapse; margin:10px 0 } .doc td { padding:6px 16px 6px 0; border-bottom:1px solid var(--line) } .doc td:first-child { font:15px ui-monospace, Menlo, monospace; white-space:nowrap }
+/* versions */
+.releases h1 { font-size:38px } .releases .status { color:var(--muted); font-size:15px; margin:18px 0 0; min-height:1.6em }
+.latest { display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:16px } .latest .card h3 { display:flex; align-items:baseline; justify-content:space-between; gap:12px } .latest .card h3 .v { font-weight:500; color:var(--muted); font-size:15px; white-space:nowrap }
+.latest .card .when { color:var(--muted); font-size:14px; margin:0 0 10px } .files { display:grid; gap:6px; margin:0; padding:0; list-style:none } .files li { display:flex; justify-content:space-between; gap:12px; font-size:15px } .files a { color:var(--ink); text-decoration:none } .files a:hover { text-decoration:underline } .files .size { color:var(--muted); font-size:14px; white-space:nowrap }
+.card .links { margin:12px 0 0; font-size:14px; display:flex; flex-wrap:wrap; gap:4px 14px }
+.history { display:grid; gap:30px } .history h3 { margin-bottom:4px } .history table { width:100%; border-collapse:collapse; font-size:15px } .history td { text-align:left; padding:9px 12px 9px 0; border-bottom:1px solid var(--line); vertical-align:top }
+.history td.v { font-weight:600; white-space:nowrap } .history td.d { color:var(--muted); white-space:nowrap } .history td .files li { justify-content:flex-start; gap:8px } .history td.n { white-space:nowrap } .history td.n a { margin-right:12px }
+@media (max-width: 640px) { .history td.d { display:none } .history td.n { white-space:normal } }

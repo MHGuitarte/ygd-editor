@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ygd-editor — tutte le versioni</title>
+<meta name="description" content="ygd-editor: esegui agenti di programmazione con IA in worktree git separati, rivedi le loro modifiche e pubblicale, tutto da una sola finestra. Gratis per macOS, Windows e Linux.">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="en" href="../releases.html">
+<link rel="alternate" hreflang="es" href="../es/releases.html">
+<link rel="alternate" hreflang="pl" href="../pl/releases.html">
+<link rel="alternate" hreflang="fr" href="../fr/releases.html">
+<link rel="alternate" hreflang="de" href="../de/releases.html">
+<link rel="alternate" hreflang="tr" href="../tr/releases.html">
+<link rel="alternate" hreflang="x-default" href="../releases.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<script>
+(() => { try { const q = new URLSearchParams(location.search).get('lang'); if (q && ["en", "es", "it", "pl", "fr", "de", "tr"].includes(q)) localStorage.setItem('ygd-lang', q) } catch (e) {} })()
+</script>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="index.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  
+  <defs>
+    <clipPath id="tile"><rect x="100" y="100" width="824" height="824" rx="184"/></clipPath>
+  </defs>
+  <rect x="100" y="100" width="824" height="824" rx="184" fill="#f2f2f3"/>
+  <g clip-path="url(#tile)">
+    <rect x="100" y="100" width="824" height="824" fill="#f2f2f3"/>
+  </g>
+  <g transform="translate(232 232) scale(23.333)" fill="none" stroke="#5980a6" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2.5" y="2.5" width="19" height="19"/>
+    <path d="M2.5 8h19"/>
+    <path d="M6 5.25h.01M9 5.25h.01"/>
+    <path d="M8 12l3.5 3.5L15.5 11"/>
+    <path d="M18 17.5H6"/>
+  </g>
+</svg>
+<span>ygd-editor</span></a>
+    <nav>
+      <a href="index.html#download">Scarica</a>
+      <a href="guide.html">Guida</a>
+      <a href="releases.html" aria-current="page">Tutte le versioni</a>
+      <a href="https://github.com/MHGuitarte/ygd-editor/issues">Segnala un problema</a>
+    </nav>
+    <label class="lang"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><select aria-label="Lingua" onchange="location.href=this.value"><option value="../releases.html?lang=en">English</option><option value="../es/releases.html?lang=es">Español</option><option value="../it/releases.html?lang=it" selected>Italiano</option><option value="../pl/releases.html?lang=pl">Polski</option><option value="../fr/releases.html?lang=fr">Français</option><option value="../de/releases.html?lang=de">Deutsch</option><option value="../tr/releases.html?lang=tr">Türkçe</option></select></label>
+  </header>
+
+  <main class="releases">
+    <div class="hero">
+      <h1>Tutte le versioni</h1>
+      <p class="lead">Tutte le versioni di ygd-editor pubblicate finora. Prima la più recente per ogni sistema, poi la cronologia completa, sistema per sistema. La pagina di download offre sempre la versione completa più recente; questo elenco è per chi ne ha bisogno di una in particolare.</p>
+      <p class="meta"><a href="https://github.com/MHGuitarte/ygd-editor/releases">Le release su GitHub</a></p>
+    </div>
+    <p id="status" class="status">Caricamento delle versioni…</p>
+    <section id="latest-section"><h2>La più recente per ogni sistema</h2><div id="latest" class="latest"></div></section>
+    <section id="history-section"><h2>Tutte le versioni, per sistema</h2><div id="history" class="history"></div>
+      <div class="note"><p>Le app installate si aggiornano da sole alla versione completa più recente; niente di quello che c’è qui va scaricato a mano, a meno che tu non voglia una versione in particolare.</p></div>
+    </section>
+  </main>
+  <script>
+(async () => {
+  const REPO = 'MHGuitarte/ygd-editor', S = {"lang": "it", "none": "Ancora nessuna versione pubblicata.", "error": "Non è stato possibile leggere l’elenco delle versioni ({err}).", "notes": "Cosa è cambiato", "checksums": "Checksum", "version": "versione {v}", "kinds": {"mac-arm64": "macOS · Apple Silicon (M1 e successivi)", "mac-x64": "macOS · Intel", "win-x64": "Windows", "linux-appimage": "Linux · AppImage", "linux-deb": "Linux · Debian / Ubuntu"}, "systems": {"mac": "macOS", "win": "Windows", "linux": "Linux"}}
+  const KINDS = [
+    { key: 'mac-arm64', sys: 'mac', test: (n) => /-mac-arm64\.dmg$/.test(n) }, { key: 'mac-x64', sys: 'mac', test: (n) => /-mac-x64\.dmg$/.test(n) },
+    { key: 'win-x64', sys: 'win', test: (n) => /-win-x64-setup\.exe$/.test(n) },
+    { key: 'linux-appimage', sys: 'linux', test: (n) => /\.AppImage$/.test(n) }, { key: 'linux-deb', sys: 'linux', test: (n) => /\.deb$/.test(n) },
+  ]
+  const SYSTEMS = ['mac', 'win', 'linux']
+  const status = document.getElementById('status'), latest = document.getElementById('latest'), history = document.getElementById('history')
+  const mb = (b) => (b / 1e6).toFixed(0) + ' MB'
+  const when = (r) => r.published_at ? new Date(r.published_at).toLocaleDateString(S.lang, { year: 'numeric', month: 'long', day: 'numeric' }) : ''
+  const semver = (tag) => tag.replace(/^v/, '').split(/[.-]/).map((p) => (/^\d+$/.test(p) ? Number(p) : p))
+  const newer = (a, b) => { const x = semver(a.tag_name), y = semver(b.tag_name); for (let i = 0; i < Math.max(x.length, y.length); i++) { const p = x[i] ?? 0, q = y[i] ?? 0; if (p === q) continue; return typeof p === 'number' && typeof q === 'number' ? q - p : String(q).localeCompare(String(p)) } return 0 }
+  const el = (tag, attrs, ...children) => { const n = document.createElement(tag); for (const [k, v] of Object.entries(attrs || {})) { if (k === 'class') n.className = v; else if (k === 'text') n.textContent = v; else n.setAttribute(k, v) } for (const c of children) if (c) n.append(c); return n }
+  const files = (r, sys) => { const ul = el('ul', { class: 'files' })
+    for (const k of KINDS) { if (k.sys !== sys) continue; const a = r.assets.find((x) => k.test(x.name)); if (!a) continue
+      ul.append(el('li', {}, el('a', { href: a.browser_download_url, text: S.kinds[k.key] }), el('span', { class: 'size', text: mb(a.size) }))) }
+    return ul }
+  const links = (r) => { const p = el('p', { class: 'links' }, el('a', { href: r.html_url, text: S.notes }))
+    const sums = r.assets.find((a) => a.name === 'SHA256SUMS.txt'); if (sums) p.append(el('a', { href: sums.browser_download_url, text: S.checksums })); return p }
+  try {
+    const res = await fetch(`https://api.github.com/repos/${REPO}/releases?per_page=100`, { headers: { Accept: 'application/vnd.github+json' } })
+    if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    const all = (await res.json()).filter((r) => !r.draft && !r.prerelease).sort(newer)
+    const has = (r, sys) => KINDS.some((k) => k.sys === sys && r.assets.some((a) => k.test(a.name)))
+    if (!all.length) { status.textContent = S.none; return }
+    status.textContent = ''
+    for (const sys of SYSTEMS) { const r = all.find((x) => has(x, sys)); if (!r) continue
+      latest.append(el('div', { class: 'card' }, el('h3', {}, S.systems[sys], el('span', { class: 'v', text: S.version.replace('{v}', r.tag_name.replace(/^v/, '')) })), el('p', { class: 'when', text: when(r) }), files(r, sys), links(r))) }
+    for (const sys of SYSTEMS) { const rows = all.filter((x) => has(x, sys)); if (!rows.length) continue
+      const table = el('table'), body = el('tbody'); table.append(body)
+      for (const r of rows) body.append(el('tr', {}, el('td', { class: 'v', text: r.tag_name.replace(/^v/, '') }), el('td', { class: 'd', text: when(r) }), el('td', {}, files(r, sys)), el('td', { class: 'n' }, el('a', { href: r.html_url, text: S.notes }), (() => { const s = r.assets.find((a) => a.name === 'SHA256SUMS.txt'); return s ? el('a', { href: s.browser_download_url, text: S.checksums }) : null })())))
+      history.append(el('div', {}, el('h3', { text: S.systems[sys] }), table)) }
+  } catch (e) { status.textContent = S.error.replace('{err}', e.message) }
+})()
+</script>
+
+  <footer>
+    <span>Fatto da Manu Hurtado. L’app è gratuita; il codice sorgente è privato.</span>
+    <a href="guide.html">Guida</a>
+    <a href="releases.html">Tutte le versioni</a>
+    <a href="https://github.com/MHGuitarte/ygd-editor/issues">Segnala un problema</a>
+    <div class="langs"><a href="../releases.html?lang=en" hreflang="en">English</a><a href="../es/releases.html?lang=es" hreflang="es">Español</a><a href="../it/releases.html?lang=it" hreflang="it" aria-current="true">Italiano</a><a href="../pl/releases.html?lang=pl" hreflang="pl">Polski</a><a href="../fr/releases.html?lang=fr" hreflang="fr">Français</a><a href="../de/releases.html?lang=de" hreflang="de">Deutsch</a><a href="../tr/releases.html?lang=tr" hreflang="tr">Türkçe</a></div>
+  </footer>
+</div>
+</body>
+</html>

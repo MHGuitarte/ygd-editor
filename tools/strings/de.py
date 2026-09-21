@@ -1,0 +1,129 @@
+# Deutsch. Strings of the download page, the guide and the versions page. HTML fragments and
+# {placeholders} stay as they are; keys match tools/strings/en.py, which is the reference.
+T = {
+ 'title_index': 'ygd-editor — Download', 'title_guide': 'ygd-editor — Benutzerhandbuch',
+ 'desc': 'ygd-editor: führe KI-Coding-Agenten in getrennten Git-Worktrees aus, prüfe ihre Änderungen und liefere sie aus – alles aus einem Fenster. Kostenlos für macOS, Windows und Linux.',
+ 'nav_download': 'Download', 'nav_guide': 'Handbuch', 'nav_releases': 'Alle Versionen', 'nav_issues': 'Problem melden',
+ 'tagline': 'Gib jeder Aufgabe ihren eigenen Branch und ihren eigenen KI-Agenten – und behalte alle im Blick.',
+ 'hero_p': 'ygd-editor öffnet jede Aufgabe in einem eigenen Git-Worktree, führt darin einen Coding-Agenten aus (Claude Code, Codex oder Gemini CLI) und lässt dich die Änderungen prüfen, committen, pushen und den Pull Request öffnen, ohne das Fenster zu verlassen. Kostenlos, für macOS, Windows und Linux.',
+ 'dl_loading': 'Neueste Version wird gesucht…', 'dl_for': 'Download für {label}', 'dl_none': 'Noch keine Version veröffentlicht', 'dl_none_hint': 'Die erste ist unterwegs.',
+ 'dl_error': 'Alle Versionen ansehen', 'dl_error_hint': 'Die neueste Version konnte nicht gelesen werden ({err}). Auf der Versionsseite gibt es alle Downloads.',
+ 'dl_others': 'Andere Systeme:', 'dl_checksums': 'Prüfsummen', 'dl_free': 'Kostenlos · kein Konto nötig · aktualisiert sich selbst',
+ 'kinds': {'mac-arm64': 'macOS · Apple Silicon (M1 und neuer)', 'mac-x64': 'macOS · Intel', 'win-x64': 'Windows', 'linux-appimage': 'Linux · AppImage', 'linux-deb': 'Linux · Debian / Ubuntu'},
+ 'shot_console': 'Die Konsole: links die Worktrees, in der Mitte Änderungen und Diff, rechts die Agenten-Sitzung.',
+ 'what_h': 'Was du bekommst',
+ 'what': [
+   ('Ein Worktree pro Aufgabe', 'Jeder Branch bekommt seinen eigenen Ordner: Agenten kommen sich nie in die Quere, und du wechselst die Aufgabe, ohne irgendetwas zu stashen.'),
+   ('Agenten dort, wo der Code ist', 'Starte Claude Code, Codex oder Gemini CLI in einem Worktree, sieh ihm bei der Arbeit zu, beantworte seine Fragen und übergib eine Sitzung an einen anderen Worktree, wenn sich die Pläne ändern.'),
+   ('Prüfen und ausliefern an Ort und Stelle', 'Dateien stagen, den Diff lesen, den Agenten bitten, eine Auswahl zu erklären oder zu ändern, committen, pushen und den Pull Request öffnen – alles auf demselben Bildschirm.'),
+   ('Steht dir nicht im Weg', 'Ein einziger Posteingang für alle Sitzungen, die auf dich warten, optionale Desktop-Benachrichtigungen und eine Anzeige der heutigen Ausgaben mit Limits, die du selbst setzt.'),
+ ],
+ 'install_h': 'In einer Minute installiert',
+ 'install_intro': 'Dein Computer wird dich beim ersten Mal warnen. Das ist zu erwarten: Niemand hat Apple oder Microsoft für ein Zertifikat bezahlt, und die Warnung betrifft diesen fehlenden Papierkram, nicht das, was die App tut. So kommst du daran vorbei – einmal, und nie wieder auf diesem Computer.',
+ 'install': [
+   ('macOS', ['Öffne die heruntergeladene <code>.dmg</code>. Ein Fenster zeigt diese Schritte in deiner Sprache – klick auf <em>Weiter</em> – und zieh dann <strong>ygd-editor</strong> in den Ordner „Programme“.', 'Öffne sie. macOS sagt, die App <em>konnte nicht überprüft werden</em>, und bietet <em>In den Papierkorb legen</em> oder <em>Fertig</em> an: Klick auf <strong>Fertig</strong>.', 'Öffne <strong>Systemeinstellungen › Datenschutz &amp; Sicherheit</strong>, scrolle nach unten zu <em>Sicherheit</em> und klick neben ygd-editor auf <strong>Dennoch öffnen</strong>. Bestätige mit deinem Passwort. Das war’s – macOS fragt nicht noch einmal.', 'Unter macOS 14 oder älter erledigt <strong>Rechtsklick auf die App › Öffnen</strong> dasselbe in einem Schritt.', 'Nicht sicher, welchen Mac du hast? Apple-Menü › Über diesen Mac: „Apple M…“ ist Apple Silicon, alles mit „Intel“ ist Intel.']),
+   ('Windows', ['Starte den Installer. Wenn SmartScreen „Der Computer wurde durch Windows geschützt“ meldet, klick auf <strong>Weitere Informationen</strong> und dann auf <strong>Trotzdem ausführen</strong>.', 'Als Herausgeber steht dort <em>ygd-editor release signing</em> – das sind wir. Wähle bei Bedarf den Installationsordner und schließe ab.', 'Die App erscheint im Startmenü als ygd-editor.']),
+   ('Linux', ['<strong>AppImage:</strong> mach sie ausführbar (<code>chmod +x ygd-editor-*.AppImage</code>) und starte sie. Wenn sie sich über FUSE beschwert, starte sie mit <code>--appimage-extract-and-run</code>.', '<strong>Debian / Ubuntu:</strong> <code>sudo apt install ./ygd-editor-*.deb</code>, dann findest du sie im Anwendungsmenü.']),
+ ],
+ 'need_h': 'Was du brauchst', 'need_p': 'Git auf deinem Computer und ein Konto bei mindestens einem Anbieter. <a href="https://github.com/openai/codex">Codex</a> und <a href="https://github.com/google-gemini/gemini-cli">Gemini CLI</a> stecken in der App, nichts zu installieren; für <a href="https://docs.anthropic.com/en/docs/claude-code">Claude Code</a>, dessen Lizenz das Mitliefern nicht erlaubt, bietet Einstellungen › KI-Anbieter einen Klick, der Anthropics offiziellen Installer für dich ausführt. Einen Anbieter zu verbinden öffnet dessen Anmeldeseite in deinem Browser. Für Pull Requests: <code>gh</code> von GitHub oder <code>glab</code> von GitLab.',
+ 'updates_h': 'Updates kümmern sich um sich selbst',
+ 'updates_p': 'Kurz nach dem Start sucht die App nach einer neuen Version, lädt sie still herunter und bietet „Neu starten und aktualisieren“ an. Einstellungen › Benachrichtigungen hat außerdem einen Button „Nach Updates suchen“ und, wenn du magst, eine Option, Updates von selbst zu installieren, wenn nichts läuft. Nach einem Update sagt dir die App, auf welcher Version du bist, und verlinkt, was sich geändert hat.',
+ 'genuine_h': 'Ist mein Download echt?',
+ 'genuine_p': 'Zwei unabhängige Prüfungen, von denen keine darauf beruht, einem Namen zu vertrauen. Du musst sie nicht durchführen; sie sind für die da, die es wollen.',
+ 'genuine_prov': '<strong>Herkunft.</strong> Jede Version kommt mit <code>SHA256SUMS.txt</code>, signiert über <a href="https://www.sigstore.dev/">Sigstore</a> vom Release-Workflow des Projekts selbst. Mit installiertem <code>cosign</code>:',
+ 'genuine_sig': '<strong>Code-Signatur.</strong> Die macOS-App und der Windows-Installer sind mit dem Zertifikat des Projekts signiert (<a href="{pem}">öffentlicher Schlüssel</a>). Vergleiche den Fingerabdruck, nicht den Namen – jeder kann ein Zertifikat nennen, wie er will.',
+ 'guide_cta_h': 'Neu hier?', 'guide_cta_p': 'Das <a href="{prefix}guide.html">Benutzerhandbuch</a> führt durch die ersten zehn Minuten: ein Repository öffnen, einen Worktree anlegen, einen Agenten starten, das Ergebnis prüfen und ausliefern.',
+ 'footer_made': 'Gemacht von Manu Hurtado. Die App ist kostenlos nutzbar; der Quellcode ist privat.',
+ # guide
+ 'g_h1': 'Benutzerhandbuch', 'g_lead': 'Alles, was du für den ersten Nachmittag mit ygd-editor brauchst, in einfachen Worten. Zehn Minuten Lesezeit, und über die Liste kommst du jederzeit zu jedem Abschnitt zurück.',
+ 'g_toc': 'Auf dieser Seite',
+ 'g_sections': [
+  ('idea', 'Die Idee in einer Minute', [
+    'Ein Git-<em>Worktree</em> ist ein zweiter Ordner für dasselbe Repository, ausgecheckt auf einem anderen Branch. Statt in einem Ordner den Branch zu wechseln – und jedes Mal zu stashen, neu zu bauen und den Faden zu verlieren – hast du einen Ordner pro Aufgabe.',
+    'ygd-editor ist darum herum gebaut: Das linke Panel listet deine Worktrees, das mittlere zeigt, was sich im ausgewählten geändert hat, und das rechte führt darin einen KI-Agenten aus. Zwei Agenten an zwei Aufgaben arbeiten in zwei Ordnern und kommen sich nie in die Quere. Wenn einer auf eine Antwort wartet, sagt es dir der Posteingang in der Kopfzeile.',
+    '<img src="{img}start.png" alt="Die Startseite: zuletzt geöffnete Repositories und die Startaktionen" loading="lazy">',
+  ]),
+  ('first', 'Deine ersten zehn Minuten', [
+    '<ol>'
+    '<li><strong>Öffne ein Repository.</strong> Wähle auf der Startseite <em>Repository öffnen</em> und such einen Ordner aus, in dem schon Git steckt, oder <em>Repository klonen</em> mit einer GitHub-, GitLab- oder beliebigen Git-URL. Zuletzt geöffnete Repositories bleiben auf der Startseite.</li>'
+    '<li><strong>Lege einen Worktree an.</strong> <em>Neuer Worktree</em> (⌘N) schlägt aus der Aufgabe einen Branch-Namen und einen Ordner dafür vor; beide kannst du nach deiner eigenen Konvention umbenennen. Git erlaubt keine Leerzeichen in Branch-Namen, also werden sie zu Bindestrichen, und der Dialog zeigt dir das Ergebnis, bevor etwas angelegt wird. Wo Worktrees auf der Platte landen, und ein optionales vorgeschlagenes Präfix, findest du unter Einstellungen › Git.</li>'
+    '<li><strong>Starte eine Sitzung.</strong> <em>+ Sitzung</em> im rechten Panel wählt einen Agenten und ein Modell; der Standard-Agent steht unter Einstellungen › Standard-Agent. Schreib in den Editor, was du willst. <code>@</code> hängt Dateien oder Kontext wie den aktuellen Diff an, <code>/</code> führt die Befehle des Agenten aus, <code>#</code> seine Skills. ⌘↵ sendet.</li>'
+    '<li><strong>Lass ihn arbeiten – oder stopp ihn.</strong> Das Transkript zeigt jedes Werkzeug, das der Agent benutzt. Wenn er eine Erlaubnis für etwas braucht, das du nicht vorab genehmigt hast, wechselt die Sitzung auf <em>wartet</em>, der Posteingang in der Kopfzeile zählt sie, und du erlaubst oder verweigerst – „Immer erlauben“ merkt sich deine Wahl für diesen Worktree. <em>Stopp</em> unterbricht; Prompts, die du währenddessen tippst, kommen in die Warteschlange.</li>'
+    '<li><strong>Prüfe die Änderungen.</strong> Der Tab Änderungen listet jede berührte Datei und wer sie geändert hat. Klick auf eine Datei für den Diff; markiere Zeilen und wähle <em>Erklären</em> oder <em>Änderung anfragen</em>, um sie an den Agenten zurückzugeben. Eine Warnung markiert Dateien, die auch ein anderer Worktree desselben Repositorys anfasst.</li>'
+    '<li><strong>Commit, Push, PR öffnen.</strong> Hak die Dateien zum Stagen ab, schreib die Nachricht oder <em>Mit KI entwerfen</em>, <em>Commit</em>. <em>Push</em> setzt den Upstream; <em>Pull Request öffnen</em> füllt Titel, Text (auf Wunsch aus dem Diff entworfen), Entwurfsmarkierung, Reviewer und Labels aus und übergibt an <code>gh</code> oder <code>glab</code>. Die Worktree-Karte zeigt dann den PR und seine Checks.</li>'
+    '</ol>',
+    '<img src="{img}console.png" alt="Die Konsole mit geöffnetem Diff und einer laufenden Claude-Code-Sitzung" loading="lazy">',
+  ]),
+  ('daily', 'Im Alltag', [
+    '<p><strong>Der Haupt-Worktree</strong> – der Ordner, in dem du das Repository geöffnet hast – steht bei den anderen in der Liste und ist der, von dem neue Worktrees abzweigen. Wähl ihn aus und klick in der Kopfzeile auf seinen Branch-Namen: Ein Suchfeld klappt über alle Branches auf – deine, oder einen, der nur auf dem Remote existiert und als neuer Tracking-Branch ausgecheckt wird. Tippen grenzt ein, Pfeiltasten und Enter wechseln. Ein Branch, den schon ein anderer Worktree hält, wird aufgeführt, aber ausgegraut, weil Git einen Branch nur in einem Worktree zugleich erlaubt.</p>'
+    '<p><strong>Von der Basis aktualisieren</strong> auf einem Worktree holt den Basis-Branch und rebased darauf; bei Konflikten stoppt es mit der Liste der Dateien, du löst sie, stagest und <em>Fortsetzen</em>. <strong>Fetch</strong> aktualisiert die Zähler für voraus/hinterher. Der Tab Terminal ist eine echte Shell im Worktree-Ordner; Aktivität ist die Zeitleiste dessen, was dort passiert ist – Commits, Pushes, Sitzungen – und überlebt Neustarts.</p>'
+    '<p><strong>Übergeben.</strong> Eine Sitzung kann über ihr Menü in einen anderen Worktree wechseln, Transkript inklusive, wenn du merkst, dass die Arbeit auf einen anderen Branch gehört.</p>'
+    '<p><strong>Einen Worktree entfernen</strong> beendet seine Sitzungen, archiviert ihre Logs und vergisst seine Berechtigungsregeln; der Branch bleibt, solange du ihn nicht löschst. Einstellungen › Git kann den Worktree von selbst löschen, sobald sein PR gemerged ist.</p>'
+    '<p><strong>Mehrere Repositories.</strong> Öffne so viele du willst; die Kopfzeile wechselt zwischen ihnen, und der Posteingang zählt wartende Sitzungen über alle hinweg.</p>',
+  ]),
+  ('workspaces', 'Mit mehreren Repositories arbeiten: Arbeitsbereiche', [
+    'Ein <em>Arbeitsbereich</em> ist eine benannte Gruppe von Ordnern, die die App zusammen offen hält. Ein Gateway, eine Web-Konsole und ein Ordner mit Notizen sind oft ein einziges Stück Arbeit, und eine Frage zu einem davon wird meist in einem anderen beantwortet – mit einem Arbeitsbereich sagst du der App, dass sie zusammengehören.',
+    '<img src="{img}workspace.png" alt="Ein Arbeitsbereich mit zwei Repositories: die Seitenleiste gruppiert Worktrees nach Repository" loading="lazy">',
+    '<strong>Einen anlegen.</strong> Öffne ein zweites Repository, während schon eines offen ist, und die App fragt, wohin es gehört: dazu zu dem, woran du gerade arbeitest, in einen neuen Arbeitsbereich mit beiden, oder für sich allein. Escape bedeutet „für sich allein“. Du kannst auch von der Startseite aus mit <em>Neuer Arbeitsbereich</em> einen anlegen und später über den Arbeitsbereiche-Button in der Kopfzeile Ordner hinzufügen oder entfernen. Einen Ordner aus einem Arbeitsbereich zu entfernen löscht nie etwas – nur die Gruppe ändert sich.',
+    '<strong>Aus VS Code.</strong> Wenn dein Team schon eine <code>.code-workspace</code>-Datei pflegt, liest <em>Arbeitsbereichsdatei öffnen…</em> sie ein: dieselben Ordner, in derselben Reihenfolge, so benannt wie in VS Code. Kommentare und abschließende Kommas in der Datei sind kein Problem. Ordner, die keine Git-Repositories sind, bleiben erhalten – sie haben nur keine Worktrees – und ein Ordner, der verschwunden ist, wird gemeldet statt stillschweigend weggelassen. <em>In Datei speichern</em> schreibt sie zurück und lässt die Teile, die die App nicht nutzt, unangetastet, sodass dieselbe Datei in beiden Werkzeugen weiter funktioniert.',
+    '<strong>Was die Seitenleiste zeigt.</strong> Worktrees nach Repository gruppiert, jede Gruppe einklappbar, und der Filter passt auf einen Branch- oder einen Repository-Namen, damit du einen Branch findest, ohne dich zu erinnern, wo er liegt. Eine eingeklappte Gruppe zeigt weiterhin, was darin läuft, und sagt weiterhin, wenn eine Sitzung wartet. Bei einem einzigen Repository gibt es gar keine Gruppen.',
+    '<strong>Was die Agenten sehen.</strong> Eine Sitzung läuft weiterhin <em>in</em> ihrem Worktree – dort gehören Git und jeder relative Pfad hin –, aber sie kann auch die anderen Ordner des Arbeitsbereichs lesen, sodass „wo landet dieser Aufruf?“ von beiden Seiten aus beantwortet werden kann. Eine Sitzung, die nur lesen darf, darf weiterhin nur lesen, überall. Über den Gruppen gibt es außerdem eine Zeile, <em>Über den Arbeitsbereich hinweg</em>, für Sitzungen, die zu keinem einzelnen Worktree gehören: Stell denen die Fragen, die den ganzen Stack betreffen. Sie haben keinen Branch, keine Änderungen und kein Terminal, denn die gehören zu einem Worktree.',
+    '<strong>Einstellungen.</strong> Jetzt drei Ebenen: Global, der Arbeitsbereich, dann ein einzelnes Repository. Der Standard-Agent, die Berechtigungsvorgabe und der Basis-Branch sind meist eine Eigenschaft des Stacks und nicht jedes einzelnen Repositorys darin, also setz sie einmal am Arbeitsbereich; ein Repository, das etwas anderes braucht, überschreibt sie trotzdem. Der Bereichswähler in den Einstellungen wählt die Ebene, und ein Abschnitt, der nichts überschreibt, sagt, woher seine Werte kommen.',
+    'Die App merkt sich jeden Arbeitsbereich getrennt: Kommst du zu einem zurück, landest du bei dem Repository, dem Worktree und der Panel-Anordnung, in der du ihn verlassen hast.',
+  ]),
+  ('providers', 'Agenten und Anbieter', [
+    '<p>ygd-editor spricht selbst mit keinem KI-Dienst. Es führt die Kommandozeilen-Werkzeuge aus, die du schon hast – <a href="https://docs.anthropic.com/en/docs/claude-code">Claude Code</a>, <a href="https://github.com/openai/codex">Codex</a>, <a href="https://github.com/google-gemini/gemini-cli">Gemini CLI</a> – mit deinen eigenen Konten, sodass Nutzung, Abrechnung und Datenschutzbedingungen genau die sind, die du mit diesen Anbietern vereinbart hast.</p>'
+    '<p>Einstellungen › KI-Anbieter verbindet jeden Anbieter mit deinem eigenen Konto: <em>Verbinden</em> öffnet die Anmeldeseite des Anbieters in deinem Browser, und die Karte zeigt danach das Konto, den Plan und <em>Konto wechseln</em> / <em>Trennen</em> / <em>Verbindung testen</em>. Codex und Gemini CLI stecken in der App, es gibt also nichts zu installieren; hast du eine eigene Kopie installiert, nutzt die App diese. Die Lizenz von Claude Code erlaubt das Mitliefern nicht, deshalb bietet seine Karte <em>Claude Code installieren</em> an, was Anthropics offiziellen Installer im Terminal der Karte ausführt, in deinen Benutzerordner, ohne Administrator-Passwort. Standard-Agent und -Modell sowie die Berechtigungsvorgabe können sich pro Repository unterscheiden.</p>',
+  ]),
+  ('permissions', 'Berechtigungen', [
+    '<p>Agenten fragen, bevor sie etwas tun, das du nicht vorab genehmigt hast. Einstellungen › Berechtigungen hat drei Vorgaben – <em>streng</em> (nur lesen), <em>ausgewogen</em> (Dateien lesen und bearbeiten, für alles andere fragen) und <em>yolo</em> (auch Befehle ausführen, das Web nutzen und pushen) – plus einzelne Schalter für Lesen, Bearbeiten, Befehle ausführen, Webzugriff, Pushen und Löschen. Egal welche Vorgabe: Ein Agent kann nie ohne Nachfrage löschen, solange du das nicht einschaltest.</p>'
+    '<p>Kommt eine Anfrage, antworten <em>Erlauben</em> und <em>Ablehnen</em> einmalig; <em>Immer erlauben</em> merkt sich dieses Werkzeug für diesen Worktree, und die Regel verschwindet mit dem Worktree.</p>',
+  ]),
+  ('notifications', 'Benachrichtigungen, Posteingang und Budget', [
+    '<p>Einstellungen › Benachrichtigungen legt fest, wann die App dich anstößt: wenn eine Sitzung wartet, wenn eine fertig ist, wenn sich die Checks eines Pull Requests ändern. Benachrichtigungen erscheinen nur, während das Fenster nicht im Vordergrund ist, ein Klick darauf springt zur Sitzung, und die Kennzeichnung im Dock oder in der Taskleiste kann wartende Sitzungen zählen.</p>'
+    '<p>Die Budgetleiste unten im linken Panel zeigt die echten Ausgaben von heute über alle Sitzungen, entnommen aus den Nutzungsberichten der Agenten selbst. Einstellungen › Budget setzt ein Tageslimit und ein Limit pro Sitzung, eine Warnschwelle und ob Sitzungen pausieren, wenn das Limit erreicht ist.</p>',
+  ]),
+  ('settings', 'Einstellungen', [
+    '<p>Die Einstellungen (⌘,) sind nach Thema gruppiert. Darstellung setzt Theme, Akzentfarbe, Dichte und Schriften; Sprache schaltet die Oberfläche zwischen Englisch, Spanisch, Italienisch, Polnisch, Französisch, Deutsch und Türkisch um. Mehrere Abschnitte tragen die Markierung <em>pro Repo</em>: Mit einem oben ausgewählten Repository kannst du sie nur für dieses Repository überschreiben.</p>'
+    '<p>Alles wird automatisch in <code>settings.json</code> im Ordner der App in deinem Benutzerverzeichnis gespeichert; <em>settings.json öffnen</em> bearbeitet die Rohdatei mit Validierung, und die Kopfzeile zeigt, wann sie zuletzt geschrieben wurde.</p>',
+    '<img src="{img}settings.png" alt="Einstellungen › Darstellung" loading="lazy">',
+  ]),
+  ('updates', 'Updates', [
+    '<p>Kurz nach dem Start prüft die App die Releases dieser Seite, lädt eine neue Version im Hintergrund herunter und bietet <em>Neu starten und aktualisieren</em> an. Einstellungen › Benachrichtigungen hat den Schalter <em>Updates anbieten</em>, einen Button <em>Nach Updates suchen</em> mit der Zeit der letzten Prüfung und <em>Updates automatisch installieren</em>: Ist er an, startet ein heruntergeladenes Update die App nach einem 15-Sekunden-Countdown, den du abbrechen kannst, von selbst neu – nur wenn keine Sitzung läuft oder wartet; sonst wird es beim Beenden installiert. Der erste Start nach einem Update sagt, auf welcher Version du bist, und verlinkt, was sich geändert hat.</p>',
+  ]),
+  ('shortcuts', 'Tastenkürzel', [
+    '<table><tr><td>⌘O</td><td>Repository öffnen</td></tr><tr><td>⇧⌘C</td><td>Repository klonen</td></tr><tr><td>⌘N</td><td>Neuer Worktree</td></tr><tr><td>⌘,</td><td>Einstellungen</td></tr><tr><td>⌘↵</td><td>Prompt senden</td></tr></table>'
+    '<p>Unter Windows und Linux lies ⌘ als Strg. Jedes Kürzel lässt sich unter Einstellungen › Tastenkürzel ändern.</p>',
+  ]),
+  ('trouble', 'Wenn etwas schiefgeht', [
+    '<p><strong>macOS sagt, die App konnte nicht überprüft werden (In den Papierkorb legen / Fertig).</strong> Klick auf Fertig, dann Systemeinstellungen › Datenschutz &amp; Sicherheit › scrolle zu Sicherheit › <em>Dennoch öffnen</em>, und bestätige mit deinem Passwort. Unter macOS 14 oder älter erledigt Rechtsklick › Öffnen das in einem Schritt. Wenn sie sich weiter weigert, im Terminal: <code>xattr -d com.apple.quarantine /Applications/ygd-editor.app</code>. Sagt sie, die App sei <em>beschädigt</em>, war der Download fehlerhaft: Lade sie erneut herunter und vergleiche sie mit <code>SHA256SUMS.txt</code>.</p>'
+    '<p><strong>Windows blockiert den Installer.</strong> SmartScreen › Weitere Informationen › Trotzdem ausführen. Als Herausgeber sollte <em>ygd-editor release signing</em> stehen.</p>'
+    '<p><strong>Die AppImage startet nicht.</strong> Starte sie mit <code>--appimage-extract-and-run</code> oder installiere <code>libfuse2</code>.</p>'
+    '<p><strong>Ein Anbieter zeigt „Nicht installiert“.</strong> Codex und Gemini CLI kommen mit der App, das heißt also, die Kopie der App ist beschädigt: Installiere die App neu. Für Claude Code klick auf <em>Claude Code installieren</em> auf seiner Karte; hast du es selbst installiert, öffne ein Terminal, prüfe, dass <code>claude --version</code> funktioniert, und dann Einstellungen › KI-Anbieter › Erneut suchen.</p>'
+    '<p><strong>Git-Fehler.</strong> Die App erklärt die üblichen in einem Satz – Zugangsdaten, ein Remote, das weitergezogen ist, eine Lock-Datei, ein Arbeitsverzeichnis mit Änderungen, Konflikte – und behält die vollständige Ausgabe im Worktree-Terminal.</p>'
+    '<p><strong>Es erscheint kein Update.</strong> Prüfe Einstellungen › Benachrichtigungen › Updates anbieten, dann Nach Updates suchen; die App muss github.com erreichen können.</p>'
+    '<p>Alles andere: <a href="https://github.com/{repo}/issues">eröffne ein Issue</a> mit dem, was du getan hast, was du erwartet hast und was passiert ist.</p>',
+  ]),
+  ('privacy', 'Datenschutz und Sicherheit', [
+    '<p>Alles läuft auf deinem Computer. Die App selbst geht für genau eine Sache ins Internet: die Releases dieser Seite auf Updates zu prüfen. Agenten sprechen mit ihren Anbietern über deine Konten; Git spricht mit deinen Remotes über deine Zugangsdaten. Anbieter-Tokens, die die App aufbewahrt, liegen im Schlüsselbund des Betriebssystems. Die Oberfläche läuft in einer Sandbox, jede Anfrage, die einen Pfad nennt, wird gegen die Repositories geprüft, die du tatsächlich geöffnet hast, und kein Befehl wird je aus einem Shell-String zusammengesetzt.</p>'
+    '<p>Um zu prüfen, ob ein Download wirklich von uns ist, sieh dir <a href="{prefix}index.html#genuine">Ist mein Download echt?</a> auf der Download-Seite an.</p>',
+  ]),
+ ],
+ # versions page and small shared strings
+ 'dl_version': 'Version {v}',
+ 'genuine_details': 'die technischen Details',
+ 'lang_label': 'Sprache',
+ 'title_releases': 'ygd-editor — alle Versionen',
+ 'r_h1': 'Alle Versionen',
+ 'r_lead': 'Jede Version von ygd-editor, die veröffentlicht wurde. Zuerst die neueste für jedes System, dann die gesamte Historie, System für System. Die Download-Seite bietet immer die neueste vollständige Version an; diese Liste ist für alle, die eine bestimmte brauchen.',
+ 'r_latest_h': 'Die neueste für jedes System',
+ 'r_all_h': 'Alle Versionen, nach System',
+ 'r_systems': {'mac': 'macOS', 'win': 'Windows', 'linux': 'Linux'},
+ 'r_loading': 'Versionen werden geladen…',
+ 'r_error': 'Die Liste der Versionen konnte nicht gelesen werden ({err}).',
+ 'r_github': 'Die Releases auf GitHub',
+ 'r_none': 'Noch keine Version veröffentlicht.',
+ 'r_notes': 'Was sich geändert hat',
+ 'r_checksums': 'Prüfsummen',
+ 'r_updates': 'Installierte Apps aktualisieren sich selbst auf die neueste vollständige Version; nichts hier muss von Hand heruntergeladen werden, außer du willst eine bestimmte.',
+}
