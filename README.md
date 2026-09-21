@@ -3,7 +3,7 @@
 Desktop app for managing git worktrees and the AI agent sessions running inside them, for macOS,
 Windows and Linux.
 
-**Download:** <https://mhguitarte.github.io/ygd-editor-releases/> · **User guide:** [English](https://mhguitarte.github.io/ygd-editor-releases/guide.html) · [Español](https://mhguitarte.github.io/ygd-editor-releases/es/guide.html) · **All versions:** [Releases](../../releases)
+**Download:** <https://mhguitarte.github.io/ygd-editor/> · **User guide:** [English](https://mhguitarte.github.io/ygd-editor/guide.html) · [Español](https://mhguitarte.github.io/ygd-editor/es/guide.html) · **All versions:** [Releases](../../releases)
 
 This repository holds the installers, the update manifests the app reads, and the download site
 (English and Spanish; the page picks your browser's language and remembers your choice). The
@@ -21,7 +21,7 @@ Two independent checks, neither of which needs you to trust a name:
    by the project's release workflow itself:
    ```bash
    cosign verify-blob --bundle SHA256SUMS.txt.sigstore.json \
-     --certificate-identity-regexp '^https://github.com/MHGuitarte/ygd-editor/\.github/workflows/release\.yml@refs/tags/v' \
+     --certificate-identity-regexp '^https://github.com/MHGuitarte/ygd-editor(-app)?/\.github/workflows/release\.yml@refs/tags/v' \
      --certificate-oidc-issuer https://token.actions.githubusercontent.com SHA256SUMS.txt
    sha256sum --check --ignore-missing SHA256SUMS.txt      # shasum -a 256 -c on macOS
    ```

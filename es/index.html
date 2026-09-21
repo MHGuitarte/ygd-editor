@@ -36,8 +36,8 @@
     <nav>
       <a href="index.html#download">Descargar</a>
       <a href="guide.html">Guía</a>
-      <a href="https://github.com/MHGuitarte/ygd-editor-releases/releases">Todas las versiones</a>
-      <a href="https://github.com/MHGuitarte/ygd-editor-releases/issues">Informar de un problema</a>
+      <a href="https://github.com/MHGuitarte/ygd-editor/releases">Todas las versiones</a>
+      <a href="https://github.com/MHGuitarte/ygd-editor/issues">Informar de un problema</a>
     </nav>
     <a class="lang" href="../index.html?lang=en" hreflang="en">English</a>
   </header>
@@ -47,7 +47,7 @@
       <h1>Dale a cada tarea su propia rama y su propio agente de IA, y tenlos todos a la vista.</h1>
       <p class="lead">ygd-editor abre cada tarea en su propio worktree de git, ejecuta dentro un agente de programación (Claude Code, Codex o Gemini CLI) y te deja revisar los cambios, hacer commit, push y abrir el pull request sin salir de la ventana. Gratis, para macOS, Windows y Linux.</p>
       <div class="dl">
-        <a id="dl" class="btn" href="https://github.com/MHGuitarte/ygd-editor-releases/releases" aria-disabled="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg><span id="dl-label">Buscando la última versión…</span></a>
+        <a id="dl" class="btn" href="https://github.com/MHGuitarte/ygd-editor/releases" aria-disabled="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg><span id="dl-label">Buscando la última versión…</span></a>
         <div id="dl-meta" class="meta"></div>
         <div id="dl-others" class="others"></div>
       </div>
@@ -69,7 +69,7 @@
       <details><summary>¿Mi descarga es auténtica? — los detalles técnicos</summary>
         <p><strong>Procedencia.</strong> Cada versión incluye <code>SHA256SUMS.txt</code>, firmado mediante <a href="https://www.sigstore.dev/">Sigstore</a> por el propio flujo de publicación del proyecto. Con <code>cosign</code> instalado:</p>
 <pre>cosign verify-blob --bundle SHA256SUMS.txt.sigstore.json \
-  --certificate-identity-regexp '^https://github.com/MHGuitarte/ygd-editor/\.github/workflows/release\.yml@refs/tags/v' \
+  --certificate-identity-regexp '^https://github.com/MHGuitarte/ygd-editor(-app)?/\.github/workflows/release\.yml@refs/tags/v' \
   --certificate-oidc-issuer https://token.actions.githubusercontent.com SHA256SUMS.txt
 sha256sum --check --ignore-missing SHA256SUMS.txt   # macOS: shasum -a 256 -c SHA256SUMS.txt</pre>
         <p><strong>Firma de código.</strong> La aplicación de macOS y el instalador de Windows están firmados con el certificado del proyecto (<a href="../release-signing.pem">clave pública</a>). Compara la huella, no el nombre: cualquiera puede llamar a un certificado como quiera.</p>
@@ -84,7 +84,7 @@ codesign --verify --deep --strict /Applications/ygd-editor.app &amp;&amp; codesi
   </main>
   <script>
 (async () => {
-  const REPO = 'MHGuitarte/ygd-editor-releases', S = {"lang": "es", "none": "Aún no hay ninguna versión publicada", "noneHint": "La primera está en camino.", "for": "Descargar para {label}", "error": "Ver todas las versiones", "errorHint": "No se pudo leer la última versión ({err}). En la página de versiones están todas las descargas.", "others": "Otros sistemas:", "checksums": "Sumas de verificación", "free": "Gratis · sin cuenta · se actualiza solo", "kinds": {"mac-arm64": "macOS · Apple Silicon (M1 y posteriores)", "mac-x64": "macOS · Intel", "win-x64": "Windows", "linux-appimage": "Linux · AppImage", "linux-deb": "Linux · Debian / Ubuntu"}}
+  const REPO = 'MHGuitarte/ygd-editor', S = {"lang": "es", "none": "Aún no hay ninguna versión publicada", "noneHint": "La primera está en camino.", "for": "Descargar para {label}", "error": "Ver todas las versiones", "errorHint": "No se pudo leer la última versión ({err}). En la página de versiones están todas las descargas.", "others": "Otros sistemas:", "checksums": "Sumas de verificación", "free": "Gratis · sin cuenta · se actualiza solo", "kinds": {"mac-arm64": "macOS · Apple Silicon (M1 y posteriores)", "mac-x64": "macOS · Intel", "win-x64": "Windows", "linux-appimage": "Linux · AppImage", "linux-deb": "Linux · Debian / Ubuntu"}}
   const kinds = [
     { key: 'mac-arm64', test: (n) => /-mac-arm64\.dmg$/.test(n) }, { key: 'mac-x64', test: (n) => /-mac-x64\.dmg$/.test(n) },
     { key: 'win-x64', test: (n) => /-win-x64-setup\.exe$/.test(n) }, { key: 'linux-appimage', test: (n) => /\.AppImage$/.test(n) }, { key: 'linux-deb', test: (n) => /\.deb$/.test(n) },
@@ -116,8 +116,8 @@ codesign --verify --deep --strict /Applications/ygd-editor.app &amp;&amp; codesi
   <footer>
     <span>Hecho por Manu Hurtado. La aplicación es gratuita; el código fuente es privado.</span>
     <a href="guide.html">Guía</a>
-    <a href="https://github.com/MHGuitarte/ygd-editor-releases/releases">Todas las versiones</a>
-    <a href="https://github.com/MHGuitarte/ygd-editor-releases/issues">Informar de un problema</a>
+    <a href="https://github.com/MHGuitarte/ygd-editor/releases">Todas las versiones</a>
+    <a href="https://github.com/MHGuitarte/ygd-editor/issues">Informar de un problema</a>
     <a href="../index.html?lang=en">English</a>
   </footer>
 </div>

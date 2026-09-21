@@ -5,7 +5,7 @@ from pathlib import Path
 import re
 
 ROOT = Path(__file__).resolve().parent.parent
-REPO = 'MHGuitarte/ygd-editor-releases'
+REPO = 'MHGuitarte/ygd-editor'
 ICON = re.sub(r'\s(width|height)="1024"', '', (ROOT / 'assets/icon.svg').read_text(), count=2)
 ICON = re.sub(r'<!--.*?-->', '', ICON, flags=re.S)
 FP256 = '46:C5:62:27:2A:5C:22:9E:D7:85:E1:A3:0D:47:2A:A3:5B:CE:AC:F0:7D:E4:D8:A3:49:23:C9:7B:D3:74:C3:AB'
@@ -391,7 +391,7 @@ def index(t):
       <details><summary>{t['genuine_h']} — {'the technical details' if t['lang']=='en' else 'los detalles técnicos'}</summary>
         <p>{t['genuine_prov']}</p>
 <pre>cosign verify-blob --bundle SHA256SUMS.txt.sigstore.json \\
-  --certificate-identity-regexp '^https://github.com/MHGuitarte/ygd-editor/\\.github/workflows/release\\.yml@refs/tags/v' \\
+  --certificate-identity-regexp '^https://github.com/MHGuitarte/ygd-editor(-app)?/\\.github/workflows/release\\.yml@refs/tags/v' \\
   --certificate-oidc-issuer https://token.actions.githubusercontent.com SHA256SUMS.txt
 sha256sum --check --ignore-missing SHA256SUMS.txt   # macOS: shasum -a 256 -c SHA256SUMS.txt</pre>
         <p>{t['genuine_sig'].replace('{pem}', pem)}</p>
