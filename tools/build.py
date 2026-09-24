@@ -4,6 +4,8 @@ in each language of the app — English at the root, the others under <code>/ (e
 live in tools/strings/<code>.py, English being the reference; the pages are the same structure filled
 from one dictionary. Run `python3 tools/build.py` after editing and commit the output."""
 from pathlib import Path
+import base64
+import hashlib
 import importlib.util
 import json
 import re
@@ -14,6 +16,21 @@ ICON = re.sub(r'\s(width|height)="1024"', '', (ROOT / 'assets/icon.svg').read_te
 ICON = re.sub(r'<!--.*?-->', '', ICON, flags=re.S)
 FP256 = '46:C5:62:27:2A:5C:22:9E:D7:85:E1:A3:0D:47:2A:A3:5B:CE:AC:F0:7D:E4:D8:A3:49:23:C9:7B:D3:74:C3:AB'
 FP1 = '79A40643BDFE500AB6730154B03B336C1809C57C'
+INSTALL_CMD = 'curl -fsSL https://mhguitarte.github.io/ygd-editor/install.sh | bash'
+
+# The certificate, the fingerprint on the page and the pin in install.sh must be the same one: rotating
+# the key (docs/SIGNING.md in the code repository) changes all three, and a stale pin would refuse every
+# genuine download.
+_der = base64.b64decode(re.sub(r'-----[A-Z ]+-----|\s', '', (ROOT / 'release-signing.pem').read_text()))
+if hashlib.sha1(_der).hexdigest().upper() != FP1:
+    raise SystemExit('FP1 is not the SHA-1 of release-signing.pem')
+_pin = re.search(r"^YGD_PIN_SHA1='([0-9A-F]{40})'$", (ROOT / 'install.sh').read_text(), re.M)
+if not _pin or _pin.group(1) != FP1:
+    raise SystemExit(f'install.sh pins {_pin.group(1) if _pin else "nothing"}, the certificate is {FP1}')
+
+# The Copy button next to the command; the label says it worked for a moment. Where the clipboard is not
+# available, the command is selected instead, ready for ⌘C.
+COPY_JS = "document.querySelectorAll('button[data-copy]').forEach((b) => b.addEventListener('click', () => { const pre = document.getElementById(b.dataset.copy); const label = b.textContent; const select = () => { const r = document.createRange(); r.selectNodeContents(pre); getSelection().removeAllRanges(); getSelection().addRange(r) }; if (!navigator.clipboard) return select(); navigator.clipboard.writeText(pre.textContent).then(() => { b.textContent = b.dataset.done; setTimeout(() => { b.textContent = label }, 1600) }, select) }))"
 
 # The languages of the app (src/i18n in the code repository), in the order the menu shows them, with the
 # name each one gives itself. English lives at the root of the site; every other language under <code>/.
@@ -88,6 +105,8 @@ footer { margin-top:56px; padding:26px 0 40px; border-top:1px solid var(--line);
 .history { display:grid; gap:30px } .history h3 { margin-bottom:4px } .history table { width:100%; border-collapse:collapse; font-size:15px } .history td { text-align:left; padding:9px 12px 9px 0; border-bottom:1px solid var(--line); vertical-align:top }
 .history td.v { font-weight:600; white-space:nowrap } .history td.d { color:var(--muted); white-space:nowrap } .history td .files li { justify-content:flex-start; gap:8px } .history td.n { white-space:nowrap } .history td.n a { margin-right:12px }
 @media (max-width: 640px) { .history td.d { display:none } .history td.n { white-space:normal } }
+.cli { margin-top:18px } .cmd { display:flex; gap:8px; align-items:stretch; margin-top:10px } .cmd pre { flex:1; min-width:0; margin:0; white-space:pre; overflow-x:auto }
+.copy { flex:none; font:600 14px/1 Barlow, system-ui, -apple-system, sans-serif; border:1px solid var(--line); background:var(--card); color:var(--ink); border-radius:6px; padding:0 14px; cursor:pointer } .copy:hover { border-color:var(--accent) }
 '''
 
 # The download button: the newest release, the installer for this computer first.
@@ -234,7 +253,10 @@ def index(t):
     pem = f'{root}release-signing.pem'
     strings = json.dumps({'lang': t['lang'], 'none': t['dl_none'], 'noneHint': t['dl_none_hint'], 'for': t['dl_for'], 'error': t['dl_error'], 'errorHint': t['dl_error_hint'], 'others': t['dl_others'], 'checksums': t['dl_checksums'], 'free': t['dl_free'], 'version': t['dl_version'], 'kinds': t['kinds']}, ensure_ascii=False)
     cards = ''.join(f'<div class="card"><h3>{h}</h3><p>{p}</p></div>' for h, p in t['what'])
-    steps = ''.join(f'<div class="card"><h3>{os}</h3><ol>' + ''.join(f'<li>{s}</li>' for s in ss) + '</ol></div>' for os, ss in t['install'])
+    # The Terminal install spans the section, where the command fits on one line; the macOS card, first in
+    # every language's `install`, then opens with the disk-image alternative.
+    cli = f'''<div class="note cli"><h3>macOS — {t['cli_h'].rstrip('.')}</h3><p>{t['cli_p']}</p><div class="cmd"><pre id="cli-cmd">{INSTALL_CMD}</pre><button type="button" class="copy" data-copy="cli-cmd" data-done="{t['cli_copied']}">{t['cli_copy']}</button></div></div>'''
+    steps = ''.join(f'<div class="card"><h3>{os}</h3>' + (f"<p>{t['cli_or']}</p>" if i == 0 else '') + '<ol>' + ''.join(f'<li>{s}</li>' for s in ss) + '</ol></div>' for i, (os, ss) in enumerate(t['install']))
     body = f'''
   <main>
     <div class="hero" id="download">
@@ -251,6 +273,7 @@ def index(t):
     <section id="what"><h2>{t['what_h']}</h2><div class="cards">{cards}</div></section>
 
     <section id="install"><h2>{t['install_h']}</h2><p class="lead" style="font-size:17px">{t['install_intro']}</p>
+      {cli}
       <div class="steps" style="margin-top:18px">{steps}</div>
       <div class="note"><h3>{t['need_h']}</h3><p>{t['need_p']}</p></div>
     </section>
@@ -277,6 +300,7 @@ codesign --verify --deep --strict /Applications/ygd-editor.app &amp;&amp; codesi
     </section>
   </main>
   <script>{JS % {'repo': REPO, 'strings': strings}}</script>
+  <script>{COPY_JS}</script>
 '''
     return shell(t, t['title_index'], body, 'index.html', redirect_head(t))
 
