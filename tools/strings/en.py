@@ -117,6 +117,17 @@ T = {
     '<p><strong>No update appears.</strong> Check Settings › Notifications › Offer updates, then Check for updates; the app needs to reach github.com.</p>'
     '<p>Anything else: <a href="https://github.com/{repo}/issues">open an issue</a> with what you did, what you expected and what happened.</p>',
   ]),
+  ('uninstall', 'Uninstalling', [
+    '<strong>Before you remove it</strong> — both optional. If a worktree is <em>current</em> in the default one, <em>End</em> it, so the default worktree has its own branch and changes back. To sign out of a provider, use <em>Disconnect</em> on its card in Settings › AI providers: the sign-ins belong to Claude Code, Codex and Gemini CLI rather than to the app, so removing the app does not end them. Then quit ygd-editor.',
+    '<strong>macOS.</strong> Drag <strong>ygd-editor</strong> from Applications to the Trash — from <code>~/Applications</code> if the Terminal install put it there.',
+    '<strong>Windows.</strong> Settings › Apps › Installed apps › ygd-editor › <em>Uninstall</em>, or Control Panel › Programs and Features.',
+    '<strong>Linux.</strong> Delete the AppImage file. For the Debian / Ubuntu package: <code>sudo apt remove ygd-editor</code>.',
+    '<strong>What stays behind.</strong> Your settings, workspaces, session history and the Codex and Gemini CLI downloads live in the <code>.ygd-editor</code> folder in your home directory, and uninstalling keeps them, so a reinstall picks up where you left off. To remove them too, with the app’s caches, run this after uninstalling:',
+    '<p>macOS:</p><pre>rm -rf ~/.ygd-editor ~/Library/Application\\ Support/ygd-editor ~/Library/Caches/ygd-editor-updater ~/Library/Caches/com.mhguitarte.ygd-editor* ~/Library/HTTPStorages/com.mhguitarte.ygd-editor ~/Library/Preferences/com.mhguitarte.ygd-editor.plist</pre>',
+    '<p>Windows (PowerShell):</p><pre>Remove-Item -Recurse -Force -ErrorAction SilentlyContinue "$env:USERPROFILE\\.ygd-editor", "$env:APPDATA\\ygd-editor", "$env:LOCALAPPDATA\\ygd-editor-updater"</pre>',
+    '<p>Linux:</p><pre>rm -rf ~/.ygd-editor ~/.config/ygd-editor ~/.cache/ygd-editor-updater</pre>',
+    '<strong>What is never touched.</strong> Your repositories and the worktrees you created are ordinary git folders and stay where they are; <code>git worktree remove &lt;folder&gt;</code> removes one. If the app installed Claude Code for you, it stays in your home folder — <a href="https://docs.anthropic.com/en/docs/claude-code">Anthropic’s documentation</a> explains how to remove it.',
+  ]),
   ('privacy', 'Privacy and security', [
     '<p>Everything runs on your computer. The app itself connects to the internet for one thing: checking this site’s releases for updates. Agents talk to their providers with your accounts; git talks to your remotes with your credentials. Provider tokens the app keeps are stored in the operating system’s keychain. The interface runs sandboxed, every request that names a path is checked against the repositories you actually opened, and no command is ever built from a shell string.</p>'
     '<p>To check that a download is really ours, see <a href="{prefix}index.html#genuine">Is my download genuine?</a> on the download page.</p>',
