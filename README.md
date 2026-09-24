@@ -5,6 +5,8 @@ Windows and Linux.
 
 **Download:** <https://mhguitarte.github.io/ygd-editor/> · **User guide:** <https://mhguitarte.github.io/ygd-editor/guide.html> · **All versions:** <https://mhguitarte.github.io/ygd-editor/releases.html> (or the raw [Releases](../../releases))
 
+**macOS from Terminal** (no Gatekeeper prompt; checks the checksum and the project certificate): `curl -fsSL https://mhguitarte.github.io/ygd-editor/install.sh | bash`. The script is [`install.sh`](install.sh); `tools/test-install.sh` tests it against a local server, and `tools/build.py` refuses to build when its pinned fingerprint is not the certificate's.
+
 This repository holds the installers, the update manifests the app reads, and the download site: the
 download page, the user guide and the list of every version, in the seven languages of the app —
 English, Español, Italiano, Polski, Français, Deutsch, Türkçe. English is at the root, the others under
