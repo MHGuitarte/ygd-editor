@@ -117,6 +117,17 @@ T = {
     '<p><strong>Güncelleme görünmüyor.</strong> Ayarlar › Bildirimler › Güncellemeleri öner’i kontrol et, sonra Güncellemeleri kontrol et; uygulamanın github.com’a erişebilmesi gerekir.</p>'
     '<p>Başka bir şey varsa: ne yaptığını, ne beklediğini ve ne olduğunu anlatan <a href="https://github.com/{repo}/issues">bir issue aç</a>.</p>',
   ]),
+  ('uninstall', 'Kaldırma', [
+    '<strong>Kaldırmadan önce</strong> — ikisi de isteğe bağlı. Varsayılan worktree’de <em>geçerli</em> bir worktree varsa <em>Bitir</em>’e tıkla; böylece varsayılan worktree kendi dalını ve değişikliklerini geri alır. Bir sağlayıcıdan çıkış yapmak için Ayarlar › Yapay zekâ sağlayıcıları’nda kartındaki <em>Bağlantıyı kes</em>’i kullan: oturumlar uygulamanın değil Claude Code, Codex ve Gemini CLI’ın, bu yüzden uygulamayı kaldırmak onları kapatmaz. Sonra ygd-editor’dan çık.',
+    '<strong>macOS.</strong> <strong>ygd-editor</strong>’ü Uygulamalar klasöründen Çöp Sepeti’ne sürükle — Terminal kurulumu onu oraya koyduysa <code>~/Applications</code>’dan.',
+    '<strong>Windows.</strong> Ayarlar › Uygulamalar › Yüklü uygulamalar › ygd-editor › <em>Kaldır</em> ya da Denetim Masası › Programlar ve Özellikler.',
+    '<strong>Linux.</strong> AppImage dosyasını sil. Debian / Ubuntu paketi için: <code>sudo apt remove ygd-editor</code>.',
+    '<strong>Geride kalanlar.</strong> Ayarların, çalışma alanların, oturum geçmişin ve Codex ile Gemini CLI indirmeleri ev dizinindeki <code>.ygd-editor</code> klasöründe durur ve kaldırma işlemi bunları silmez; yeniden kurduğunda kaldığın yerden devam edersin. Bunları da uygulamanın önbellekleriyle birlikte silmek için kaldırdıktan sonra şunu çalıştır:',
+    '<p>macOS:</p><pre>rm -rf ~/.ygd-editor ~/Library/Application\\ Support/ygd-editor ~/Library/Caches/ygd-editor-updater ~/Library/Caches/com.mhguitarte.ygd-editor* ~/Library/HTTPStorages/com.mhguitarte.ygd-editor ~/Library/Preferences/com.mhguitarte.ygd-editor.plist</pre>',
+    '<p>Windows (PowerShell):</p><pre>Remove-Item -Recurse -Force -ErrorAction SilentlyContinue "$env:USERPROFILE\\.ygd-editor", "$env:APPDATA\\ygd-editor", "$env:LOCALAPPDATA\\ygd-editor-updater"</pre>',
+    '<p>Linux:</p><pre>rm -rf ~/.ygd-editor ~/.config/ygd-editor ~/.cache/ygd-editor-updater</pre>',
+    '<strong>Asla dokunulmayanlar.</strong> Depoların ve oluşturduğun worktree’ler sıradan git klasörleridir ve oldukları yerde kalır; <code>git worktree remove &lt;klasör&gt;</code> birini kaldırır. Claude Code’u uygulama senin için kurduysa ev dizininde kalır — nasıl kaldırılacağını <a href="https://docs.anthropic.com/en/docs/claude-code">Anthropic’in belgeleri</a> anlatır.',
+  ]),
   ('privacy', 'Gizlilik ve güvenlik', [
     '<p>Her şey bilgisayarında çalışır. Uygulamanın kendisi internete tek bir şey için bağlanır: güncellemeler için bu sitenin sürümlerine bakmak. Ajanlar sağlayıcılarıyla senin hesaplarınla konuşur; git uzak depolarınla senin kimlik bilgilerinle konuşur. Uygulamanın sakladığı sağlayıcı token’ları işletim sisteminin anahtar zincirinde tutulur. Arayüz sandbox içinde çalışır, bir yol adı geçen her istek gerçekten açtığın depolara karşı kontrol edilir ve hiçbir komut asla bir kabuk dizesinden oluşturulmaz.</p>'
     '<p>Bir indirmenin gerçekten bize ait olduğunu kontrol etmek için indirme sayfasındaki <a href="{prefix}index.html#genuine">İndirdiğim dosya gerçek mi?</a> bölümüne bak.</p>',

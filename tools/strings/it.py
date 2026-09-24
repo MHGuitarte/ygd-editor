@@ -117,6 +117,17 @@ T = {
     '<p><strong>Non compare nessun aggiornamento.</strong> Controlla Impostazioni › Notifiche › Proponi gli aggiornamenti, poi Cerca aggiornamenti; l’app deve poter raggiungere github.com.</p>'
     '<p>Per tutto il resto: <a href="https://github.com/{repo}/issues">apri una issue</a> raccontando cosa hai fatto, cosa ti aspettavi e cosa è successo.</p>',
   ]),
+  ('uninstall', 'Disinstallare', [
+    '<strong>Prima di rimuoverla</strong> — entrambe le cose sono facoltative. Se c’è un worktree <em>corrente</em> in quello predefinito, fai clic su <em>Termina</em>, così il worktree predefinito riavrà il suo branch e le sue modifiche. Per uscire da un provider, usa <em>Scollega</em> sul suo riquadro in Impostazioni › Provider di IA: gli accessi appartengono a Claude Code, Codex e Gemini CLI, non all’app, quindi rimuovere l’app non li chiude. Poi esci da ygd-editor.',
+    '<strong>macOS.</strong> Trascina <strong>ygd-editor</strong> da Applicazioni al Cestino — da <code>~/Applications</code> se l’installazione dal Terminale l’ha messa lì.',
+    '<strong>Windows.</strong> Impostazioni › App › App installate › ygd-editor › <em>Disinstalla</em>, oppure Pannello di controllo › Programmi e funzionalità.',
+    '<strong>Linux.</strong> Elimina il file AppImage. Per il pacchetto Debian / Ubuntu: <code>sudo apt remove ygd-editor</code>.',
+    '<strong>Cosa resta.</strong> Le impostazioni, gli spazi di lavoro, la cronologia delle sessioni e i download di Codex e Gemini CLI stanno nella cartella <code>.ygd-editor</code> della tua cartella personale, e la disinstallazione li conserva: reinstallando riprendi da dove avevi lasciato. Per eliminarli, insieme alle cache dell’app, esegui questo dopo la disinstallazione:',
+    '<p>macOS:</p><pre>rm -rf ~/.ygd-editor ~/Library/Application\\ Support/ygd-editor ~/Library/Caches/ygd-editor-updater ~/Library/Caches/com.mhguitarte.ygd-editor* ~/Library/HTTPStorages/com.mhguitarte.ygd-editor ~/Library/Preferences/com.mhguitarte.ygd-editor.plist</pre>',
+    '<p>Windows (PowerShell):</p><pre>Remove-Item -Recurse -Force -ErrorAction SilentlyContinue "$env:USERPROFILE\\.ygd-editor", "$env:APPDATA\\ygd-editor", "$env:LOCALAPPDATA\\ygd-editor-updater"</pre>',
+    '<p>Linux:</p><pre>rm -rf ~/.ygd-editor ~/.config/ygd-editor ~/.cache/ygd-editor-updater</pre>',
+    '<strong>Cosa non viene mai toccato.</strong> I tuoi repository e i worktree che hai creato sono normali cartelle git e restano dove sono; <code>git worktree remove &lt;cartella&gt;</code> ne rimuove uno. Se l’app ha installato Claude Code per te, resta nella tua cartella personale: la <a href="https://docs.anthropic.com/en/docs/claude-code">documentazione di Anthropic</a> spiega come rimuoverlo.',
+  ]),
   ('privacy', 'Privacy e sicurezza', [
     '<p>Tutto gira sul tuo computer. L’app in sé si collega a internet per una cosa sola: controllare le versioni pubblicate su questo sito in cerca di aggiornamenti. Gli agenti parlano con i loro provider con i tuoi account; git parla con i tuoi remoti con le tue credenziali. I token dei provider che l’app conserva stanno nel portachiavi del sistema operativo. L’interfaccia gira in una sandbox, ogni richiesta che nomina un percorso viene verificata rispetto ai repository che hai davvero aperto, e nessun comando viene mai costruito a partire da una stringa di shell.</p>'
     '<p>Per verificare che un download sia davvero nostro, vedi <a href="{prefix}index.html#genuine">Il mio download è autentico?</a> nella pagina di download.</p>',

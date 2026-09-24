@@ -309,12 +309,16 @@ def redirect_head(t):
     return f'<script>{REDIRECT % {"langs": json.dumps(list(T))}}</script>' if t['lang'] == 'en' else ''
 
 
+BLOCK = re.compile(r'<(p|ol|ul|table|pre|img|div|h[1-6])[\s>]')
+
+
 def guide(t):
     img = f'{t["root"]}assets/img/'
     toc = ''.join(f'<a href="#{sid}">{h}</a>' for sid, h, _ in t['g_sections'])
     secs = ''
     for sid, h, parts in t['g_sections']:
-        inner = ''.join(p if p.lstrip().startswith('<') else f'<p>{p}</p>' for p in parts)
+        # A part that opens with a block element is HTML as is; anything else, `<strong>` lead-ins included, is a paragraph.
+        inner = ''.join(p if BLOCK.match(p.lstrip()) else f'<p>{p}</p>' for p in parts)
         inner = inner.replace('{img}', img).replace('{repo}', REPO).replace('{prefix}', '')
         secs += f'<section id="{sid}"><h2>{h}</h2>{inner}</section>'
     body = f'''
