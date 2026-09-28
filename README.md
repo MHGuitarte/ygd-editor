@@ -1,7 +1,8 @@
 # ygd-editor — downloads
 
 Desktop app for managing git worktrees and the AI agent sessions running inside them, for macOS,
-Windows and Linux.
+Windows (64-bit, 10 or 11) and Linux (x86-64, glibc 2.34 or newer: Ubuntu 22.04, Debian 12, Fedora 35
+and later).
 
 **Download:** <https://mhguitarte.github.io/ygd-editor/> · **User guide:** <https://mhguitarte.github.io/ygd-editor/guide.html> · **All versions:** <https://mhguitarte.github.io/ygd-editor/releases.html> (or the raw [Releases](../../releases))
 
@@ -24,8 +25,10 @@ new release needs no rebuild.
 
 Two independent checks, neither of which needs you to trust a name:
 
-1. **Provenance.** Every release carries `SHA256SUMS.txt` signed with [Sigstore](https://www.sigstore.dev/)
-   by the project's release workflow itself:
+1. **Provenance.** Every release carries `SHA256SUMS.txt`. A release built by the project's release
+   workflow also carries its [Sigstore](https://www.sigstore.dev/) signature,
+   `SHA256SUMS.txt.sigstore.json`; one without that file was built on the maintainer's machine, and the
+   code signature (2.) is what vouches for it. Where the bundle is there:
    ```bash
    cosign verify-blob --bundle SHA256SUMS.txt.sigstore.json \
      --certificate-identity-regexp '^https://github.com/MHGuitarte/ygd-editor(-app)?/\.github/workflows/release\.yml@refs/tags/v' \
