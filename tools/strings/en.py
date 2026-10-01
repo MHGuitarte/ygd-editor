@@ -17,6 +17,8 @@ T = {
    ('Agents where the code is', 'Start Claude Code, Codex or Gemini CLI inside a worktree, watch it work, answer its questions, and hand a session to another worktree when plans change.'),
    ('Review and ship in place', 'Stage files, read the diff, ask the agent to explain or change a selection, commit, push and open the pull request from the same screen.'),
    ('Stays out of your way', 'A single inbox for every session waiting on you, optional desktop notifications, and a daily spend meter with limits you set.'),
+   ('Try it several ways', 'Run one task with two to four agents or models at once, each in its own worktree, compare what they did side by side, and keep the best.'),
+   ('Undo a turn, not the day', 'Every agent turn shows what it changed and can be rolled back on its own — your edits and the other turns stay.'),
  ],
  'install_h': 'Install in a minute',
  'install_intro': 'Your computer will warn you the first time. That is expected: nobody paid Apple or Microsoft for a certificate, and the warning is about the missing paperwork, not about anything the app does. Here is how to get past it — once, and never again for that computer.',
@@ -65,6 +67,27 @@ T = {
     '<p><strong>Removing a worktree</strong> ends its sessions, archives their logs and forgets its permission rules; the branch stays unless you delete it. Settings › Git can delete the worktree by itself after its PR merges.</p>'
     '<p><strong>Multiple repositories.</strong> Open as many as you like; the header switches between them, and the inbox counts waiting sessions across all of them.</p>',
   ]),
+  ('git', 'Git without a terminal', [
+   '<strong>Pull and Update from base are two things.</strong> <em>Pull</em> brings in what was pushed to your own branch — a teammate’s commit, say — so your next push goes through; when both sides have new commits it rebases or merges as Settings › Git says, or asks. <em>Update from base</em>, in the <code>···</code> menu, is the other job: catching up with the base branch.',
+   '<strong>Conflicts.</strong> When a rebase, merge, revert or cherry-pick stops on conflicts, open the file and resolve it block by block: keep one side, the other, or <em>Keep both</em> — or take a whole file, or <em>Ask the agent</em>. The two sides are named for what is happening, so you never have to guess which one is “ours”. <em>Mark resolved</em>, then <em>Continue</em> on the banner.',
+   '<strong>Amend.</strong> The commit box has an <em>Amend</em> switch. A commit you have not pushed is simply rewritten. One you have pushed is never force-pushed: the app puts it on a new branch, pushes that, opens a new pull request and closes the old one with a link to the new one.',
+   '<strong>History.</strong> Right-click a commit in Activity to <em>Copy SHA</em>, <em>Show changes</em>, <em>Revert</em> it, or <em>Cherry-pick into…</em> another worktree.',
+   '<strong>Pull requests.</strong> The PR card lists every check, each reviewer’s verdict and the review comments with their file and line. <em>Address review</em> hands the open comments to the agent; <em>Merge</em> offers the methods the repository allows and says why when it cannot merge yet. When work has landed, <em>Clean up merged worktrees…</em> removes every finished worktree in one go and names the ones it left alone.',
+  ]),
+  ('review', 'Reviewing what an agent did', [
+   '<strong>One turn at a time.</strong> Every turn that changes files ends with a line under it in the transcript — <em>Changed 4 files · +120 −8</em>. Click it and the Changes tab shows only what that turn did. <em>Undo this turn…</em> lists what will happen to each file first, then takes the turn’s changes out: a file nobody touched since goes back to how it was, a file you or a later turn edited keeps those edits, and where both changed the same lines you get conflict markers to resolve. The undo is a turn of its own, so it can be undone too.',
+   '<strong>Hunk by hunk.</strong> Each block of a diff has <em>Stage</em> and <em>Discard</em> (<em>Unstage</em> once staged); select some lines to stage or discard just those. A file that is partly staged gets a <em>Staged / Unstaged</em> switch above its diff.',
+   '<strong>Finding an old conversation.</strong> <em>Search sessions</em>, at the top of the sessions panel, looks through what was said in this worktree, the repository or the workspace — and, if you tick <em>archived</em>, in worktrees you have since removed. A result opens the session at that message. Right-click a session for <em>Export transcript…</em>: a Markdown file with the prompts, the answers and the tool calls. Nothing in it is hidden, so read it before you share it.',
+  ]),
+  ('setup', 'Worktrees that are ready to run', [
+   'A new worktree has none of your ignored files — no <code>.env</code>, no <code>node_modules</code>. <strong>Settings › Worktree setup</strong> fixes that once: files to copy from the main worktree (<code>.env*</code>, say), commands to run in the new worktree’s terminal (<code>pnpm install</code>), and a port base, so each worktree gets its own port as <code>YGD_PORT</code> and two dev servers stop fighting over the same one. The worktree’s terminal and its agents also get <code>YGD_WORKTREE</code> and <code>YGD_BRANCH</code>. The New worktree dialog shows what setup will do; <em>Run setup again</em> is in the <code>···</code> menu.',
+   'A repository can carry the same recipe in <code>.ygd/worktree.json</code>. Its commands come from whoever wrote the branch, so the app shows them and asks before running them the first time — and again whenever the file changes.',
+   '<strong>Several terminals.</strong> <code>+</code> in the Terminal tab opens another shell beside the worktree’s own; double-click a tab to rename it. <em>Run ▾</em> in the toolbar starts saved commands — <code>dev: pnpm dev</code> — each in a terminal named after it, with <em>Restart</em> and <em>Stop</em>. <code>@terminal:dev</code> in a prompt attaches what that terminal printed.',
+  ]),
+  ('tryn', 'Try it several ways', [
+   'Not sure which agent or model will do a task best? Tick <em>Try it N ways</em> in the New worktree dialog and pick two to four attempts — Claude Code, Codex and Gemini CLI, or one model three times. Each gets its own worktree from the same base (<code>login-a</code>, <code>login-b</code>…), setup runs in each, and the same first prompt goes to all of them. Every attempt counts against your budget, and the dialog says so.',
+   'The attempts sit together in the sidebar. Click their entry to compare them side by side: status, files and lines changed, cost, turns and time, a quick diff, and your check command — <code>pnpm test</code>, say, from Settings › Worktree setup — run in each on demand. <em>Keep this one</em> removes the others after listing them, can give the winner the plain branch name, and can go straight on to Make current or a pull request.',
+  ]),
   ('workspaces', 'Working on several repositories: workspaces', [
     'A <em>workspace</em> is a named set of folders the app holds open together. A gateway, a web console and a folder of notes are often one piece of work, and a question about one of them is usually answered in another — a workspace is how you tell the app they belong together.',
     '<img src="{img}workspace.png" alt="A workspace of two repositories: the sidebar groups worktrees by repository" loading="lazy">',
@@ -82,6 +105,10 @@ T = {
     '<strong>Fixes made while testing go home.</strong> If you — or an agent in the default worktree — fix something while trying a change, <em>Send edits back</em> returns it to the worktree it belongs to, as uncommitted changes there, to review and commit; <em>Undo</em> takes it back until the next step. A file that belongs to several current worktrees, or to none, is asked about rather than guessed. Swap, Add, Refresh and End send the edits back first, so nothing done in the default worktree is lost to them.',
     '<strong>End</strong> gives the default worktree back exactly as it was: its branch, and its own changes, staged and not staged. Every step opens a short preview first — what comes in, what is kept aside, which files would conflict, and anything that stops it right now with the way out. You find them in the <code>···</code> menu of a worktree, on a right-click in the sidebar, in the header strip, and on ⌘⇧D / ⌘⇧E.',
     'Settings › Git can refresh a current worktree by itself when its agent keeps working, and run a command after each load — <code>pnpm install</code> when <code>pnpm-lock.yaml</code> changed, say — in the default worktree\'s terminal, where you see it. Your own <code>git stash</code> is never touched. It needs git 2.40 or newer.',
+  ]),
+  ('find', 'Getting around, and what it cost', [
+   '<strong>⌘K</strong> opens the command palette: every action in the app — with its shortcut, or the reason it cannot run right now — plus your worktrees across the workspace, your sessions, the pages of Settings and your recent repositories. Start with <code>&gt;</code> for actions, <code>@</code> for worktrees, <code>#</code> for sessions; arrows and Enter do the rest.',
+   '<strong>What it cost.</strong> Settings › Budget has a <em>Usage report</em>: a bar per day split by agent, and what each repository and branch spent, over the last 7, 30 or 90 days or any dates you pick, with <em>Export CSV</em>. The figures are the budget’s own, so they always match the spend meter.',
   ]),
   ('providers', 'Agents and providers', [
     '<p>ygd-editor does not talk to any AI service itself. It runs the command-line tools you already have — <a href="https://docs.anthropic.com/en/docs/claude-code">Claude Code</a>, <a href="https://github.com/openai/codex">Codex</a>, <a href="https://github.com/google-gemini/gemini-cli">Gemini CLI</a> — with your own accounts, so your usage, billing and data terms are exactly the ones you agreed with those providers.</p>'
@@ -104,7 +131,7 @@ T = {
     '<p>Shortly after launch the app checks this site’s releases, downloads a new version in the background and offers <em>Restart to update</em>. Settings › Notifications has the <em>Offer updates</em> switch, a <em>Check for updates</em> button with the time of the last check, and <em>Install updates automatically</em>: with it on, a downloaded update restarts the app by itself after a 15-second countdown you can cancel — only when no session is running or waiting; otherwise it installs when you quit. The first launch after an update says which version you are on and links to what changed.</p>',
   ]),
   ('shortcuts', 'Keyboard shortcuts', [
-    '<table><tr><td>⌘O</td><td>Open repository</td></tr><tr><td>⇧⌘C</td><td>Clone repository</td></tr><tr><td>⌘N</td><td>New worktree</td></tr><tr><td>⌘,</td><td>Settings</td></tr><tr><td>⌘↵</td><td>Send the prompt</td></tr></table>'
+    '<table><tr><td>⌘O</td><td>Open repository</td></tr><tr><td>⇧⌘C</td><td>Clone repository</td></tr><tr><td>⌘N</td><td>New worktree</td></tr><tr><td>⌘K</td><td>Command palette</td></tr><tr><td>⌘,</td><td>Settings</td></tr><tr><td>⌘↵</td><td>Send the prompt</td></tr></table>'
     '<p>On Windows and Linux read ⌘ as Ctrl. Every shortcut can be changed under Settings › Keyboard shortcuts.</p>',
   ]),
   ('trouble', 'When something goes wrong', [
