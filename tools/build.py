@@ -24,9 +24,14 @@ INSTALL_CMD = 'curl -fsSL https://mhguitarte.github.io/ygd-editor/install.sh | b
 _der = base64.b64decode(re.sub(r'-----[A-Z ]+-----|\s', '', (ROOT / 'release-signing.pem').read_text()))
 if hashlib.sha1(_der).hexdigest().upper() != FP1:
     raise SystemExit('FP1 is not the SHA-1 of release-signing.pem')
-_pin = re.search(r"^YGD_PIN_SHA1='([0-9A-F]{40})'$", (ROOT / 'install.sh').read_text(), re.M)
+_install = (ROOT / 'install.sh').read_text()
+_pin = re.search(r"^YGD_PIN_SHA1='([0-9A-F]{40})'$", _install, re.M)
 if not _pin or _pin.group(1) != FP1:
     raise SystemExit(f'install.sh pins {_pin.group(1) if _pin else "nothing"}, the certificate is {FP1}')
+# install.sh also carries the whole certificate, to check SHA256SUMS.txt.sig against: the same bytes.
+_cert = re.search(r"^YGD_CERT='(-----BEGIN CERTIFICATE-----\n.*?\n-----END CERTIFICATE-----)'$", _install, re.M | re.S)
+if not _cert or _cert.group(1) != (ROOT / 'release-signing.pem').read_text().strip():
+    raise SystemExit('install.sh YGD_CERT is not release-signing.pem')
 
 # The Copy button next to the command; the label says it worked for a moment. Where the clipboard is not
 # available, the command is selected instead, ready for ⌘C.
@@ -284,13 +289,19 @@ def index(t):
 
     <section id="genuine"><h2>{t['genuine_h']}</h2><p>{t['genuine_p']}</p>
       <details><summary>{t['genuine_h']} — {t['genuine_details']}</summary>
+        <p>{t['genuine_sums'].replace('{pem}', pem)}</p>
+        <span class="fp">SHA-256 {FP256}</span>
+<pre>curl -fsSLO https://mhguitarte.github.io/ygd-editor/release-signing.pem
+openssl x509 -in release-signing.pem -noout -fingerprint -sha256   # 46:C5:62:…:74:C3:AB
+openssl x509 -in release-signing.pem -pubkey -noout &gt; release-signing.pub
+openssl dgst -sha256 -verify release-signing.pub -signature SHA256SUMS.txt.sig SHA256SUMS.txt   # Verified OK
+sha256sum --check --ignore-missing SHA256SUMS.txt   # macOS: shasum -a 256 -c --ignore-missing SHA256SUMS.txt</pre>
         <p>{t['genuine_prov']}</p>
 <pre>cosign verify-blob --bundle SHA256SUMS.txt.sigstore.json \\
   --certificate-identity-regexp '^https://github.com/MHGuitarte/ygd-editor(-app)?/\\.github/workflows/release\\.yml@refs/tags/v' \\
   --certificate-oidc-issuer https://token.actions.githubusercontent.com SHA256SUMS.txt
-sha256sum --check --ignore-missing SHA256SUMS.txt   # macOS: shasum -a 256 -c SHA256SUMS.txt</pre>
+sha256sum --check --ignore-missing SHA256SUMS.txt   # macOS: shasum -a 256 -c --ignore-missing SHA256SUMS.txt</pre>
         <p>{t['genuine_sig'].replace('{pem}', pem)}</p>
-        <span class="fp">SHA-256 {FP256}</span>
         <span class="fp">SHA-1 (macOS codesign · Windows thumbprint) {FP1}</span>
 <pre># macOS
 codesign --verify --deep --strict /Applications/ygd-editor.app &amp;&amp; codesign -dvv /Applications/ygd-editor.app 2&gt;&amp;1 | grep Authority
