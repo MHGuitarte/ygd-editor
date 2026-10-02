@@ -6,7 +6,7 @@ and later).
 
 **Download:** <https://mhguitarte.github.io/ygd-editor/> · **User guide:** <https://mhguitarte.github.io/ygd-editor/guide.html> · **All versions:** <https://mhguitarte.github.io/ygd-editor/releases.html> (or the raw [Releases](../../releases))
 
-**macOS from Terminal** (no Gatekeeper prompt; checks the checksum and the project certificate): `curl -fsSL https://mhguitarte.github.io/ygd-editor/install.sh | bash`. The script is [`install.sh`](install.sh); `tools/test-install.sh` tests it against a local server, and `tools/build.py` refuses to build when its pinned fingerprint is not the certificate's.
+**macOS from Terminal** (no Gatekeeper prompt; checks the checksums' signature, the checksum and the project certificate, and installs nothing if one fails): `curl -fsSL https://mhguitarte.github.io/ygd-editor/install.sh | bash`. The script is [`install.sh`](install.sh); `tools/test-install.sh` tests it against a local server, and `tools/build.py` refuses to build when its pinned fingerprint or embedded certificate is not `release-signing.pem`.
 
 This repository holds the installers, the update manifests the app reads, and the download site: the
 download page, the user guide and the list of every version, in the seven languages of the app —
@@ -25,15 +25,26 @@ new release needs no rebuild.
 
 Two independent checks, neither of which needs you to trust a name:
 
-1. **Provenance.** Every release carries `SHA256SUMS.txt`. A release built by the project's release
-   workflow also carries its [Sigstore](https://www.sigstore.dev/) signature,
-   `SHA256SUMS.txt.sigstore.json`; one without that file was built on the maintainer's machine, and the
-   code signature (2.) is what vouches for it. Where the bundle is there:
+1. **Signed checksums.** Every release since v0.17.2 carries `SHA256SUMS.txt` and its signature,
+   `SHA256SUMS.txt.sig`, made with the project's key, the one behind
+   [`release-signing.pem`](release-signing.pem). Check the certificate's fingerprint (2.) first: that
+   is the step that proves the rest, since whoever could replace an installer could replace a
+   certificate next to it. Only `openssl` is needed (on Windows, Git Bash has one):
+   ```bash
+   curl -fsSLO https://mhguitarte.github.io/ygd-editor/release-signing.pem
+   openssl x509 -in release-signing.pem -noout -fingerprint -sha256   # 46:C5:62:…:74:C3:AB, see 2.
+   openssl x509 -in release-signing.pem -pubkey -noout > release-signing.pub
+   openssl dgst -sha256 -verify release-signing.pub -signature SHA256SUMS.txt.sig SHA256SUMS.txt   # Verified OK
+   sha256sum --check --ignore-missing SHA256SUMS.txt      # shasum -a 256 -c --ignore-missing on macOS
+   ```
+   Older releases: v0.6.0 – v0.17.1 carry an unsigned `SHA256SUMS.txt`, and the code signature (2.) is
+   what vouches for them. v0.1.0 – v0.4.0 were built by the project's release workflow and carry its
+   [Sigstore](https://www.sigstore.dev/) signature instead, `SHA256SUMS.txt.sigstore.json`:
    ```bash
    cosign verify-blob --bundle SHA256SUMS.txt.sigstore.json \
      --certificate-identity-regexp '^https://github.com/MHGuitarte/ygd-editor(-app)?/\.github/workflows/release\.yml@refs/tags/v' \
      --certificate-oidc-issuer https://token.actions.githubusercontent.com SHA256SUMS.txt
-   sha256sum --check --ignore-missing SHA256SUMS.txt      # shasum -a 256 -c on macOS
+   sha256sum --check --ignore-missing SHA256SUMS.txt      # shasum -a 256 -c --ignore-missing on macOS
    ```
 2. **Code signature.** The macOS app and the Windows installer are signed with the project's own
    certificate. Its SHA-256 fingerprint is
