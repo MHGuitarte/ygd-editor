@@ -21,6 +21,10 @@ Edit, run `python3 tools/build.py` and commit the output. Screenshots are in `as
 versions page and the download button read the releases through the GitHub API in the browser, so a
 new release needs no rebuild.
 
+`settings.schema.json` is the JSON Schema of the app's `settings.json`, whose `$schema` points at
+<https://mhguitarte.github.io/ygd-editor/settings.schema.json>. It is a copy of `docs/settings.schema.json`
+in the code repository, not generated here: copy it again when a release changes the settings.
+
 ## Is my download genuine?
 
 Two independent checks, neither of which needs you to trust a name:

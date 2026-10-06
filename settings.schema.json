@@ -1,0 +1,373 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://mhguitarte.github.io/ygd-editor/settings.schema.json",
+  "title": "ygd-editor settings.json",
+  "description": "The settings of ygd-editor, at ~/.ygd-editor/settings.json. The app writes it; it can be edited by hand, and an edit is applied while the app runs.",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "The format of the file, written by the app: leave it as it is. A newer app migrates a file in an older format and keeps the original as settings.json.v<N>.bak; an older app leaves a file in a newer format alone and runs on its defaults."
+    },
+    "global": {
+      "$ref": "#/definitions/config",
+      "description": "Settings for every repository and workspace, unless one overrides a section."
+    },
+    "repos": {
+      "type": "object",
+      "description": "Overrides per repository, keyed by the repository's root path.",
+      "additionalProperties": {
+        "$ref": "#/definitions/override"
+      }
+    },
+    "workspaces": {
+      "type": "object",
+      "description": "Overrides per workspace, keyed by the workspace's id. A repository's own override wins over its workspace's.",
+      "additionalProperties": {
+        "$ref": "#/definitions/override"
+      }
+    }
+  },
+  "definitions": {
+    "config": {
+      "type": "object",
+      "properties": {
+        "theme": {
+          "type": "string",
+          "default": "light"
+        },
+        "density": {
+          "type": "string",
+          "default": "comfortable"
+        },
+        "diff": {
+          "type": "string",
+          "enum": [
+            "unified",
+            "split"
+          ],
+          "default": "unified"
+        },
+        "lang": {
+          "type": "string",
+          "enum": [
+            "en",
+            "es",
+            "pt",
+            "pl",
+            "it",
+            "de",
+            "fr",
+            "tr"
+          ],
+          "default": "en"
+        },
+        "accent": {
+          "type": "string",
+          "default": "#5980a6"
+        },
+        "uiFont": {
+          "type": "string",
+          "enum": [
+            "barlow",
+            "system",
+            "ibm",
+            "source",
+            "serif"
+          ],
+          "default": "barlow"
+        },
+        "codeFont": {
+          "type": "string",
+          "enum": [
+            "system",
+            "jetbrains",
+            "ibmmono",
+            "fira"
+          ],
+          "default": "system"
+        },
+        "agent": {
+          "type": "string",
+          "enum": [
+            "claude",
+            "codex",
+            "gemini"
+          ],
+          "default": "claude"
+        },
+        "model": {
+          "type": "string",
+          "default": "claude-opus-5"
+        },
+        "autoStart": {
+          "type": "boolean",
+          "default": true
+        },
+        "queueAutoRun": {
+          "type": "boolean",
+          "default": true
+        },
+        "maxSessions": {
+          "type": "string",
+          "default": "4"
+        },
+        "sessionKeepDays": {
+          "type": "string",
+          "default": ""
+        },
+        "sessionKeepMb": {
+          "type": "string",
+          "default": ""
+        },
+        "agentIdleMinutes": {
+          "type": "string",
+          "default": "30"
+        },
+        "preset": {
+          "type": "string",
+          "default": "balanced"
+        },
+        "permRead": {
+          "type": "boolean",
+          "default": true
+        },
+        "permEdit": {
+          "type": "boolean",
+          "default": true
+        },
+        "permBash": {
+          "type": "boolean",
+          "default": false
+        },
+        "permWeb": {
+          "type": "boolean",
+          "default": false
+        },
+        "permPush": {
+          "type": "boolean",
+          "default": false
+        },
+        "permDelete": {
+          "type": "boolean",
+          "default": false
+        },
+        "permTimeout": {
+          "type": "string",
+          "default": ""
+        },
+        "wtRoot": {
+          "type": "string",
+          "default": "../"
+        },
+        "branchPrefix": {
+          "type": "string",
+          "default": ""
+        },
+        "baseBranch": {
+          "type": "string",
+          "default": "main"
+        },
+        "baseRemote": {
+          "type": "string",
+          "default": ""
+        },
+        "prTool": {
+          "type": "string",
+          "default": "gh"
+        },
+        "signCommits": {
+          "type": "boolean",
+          "default": false
+        },
+        "deleteAfterMerge": {
+          "type": "boolean",
+          "default": true
+        },
+        "fetchOnOpen": {
+          "type": "boolean",
+          "default": true
+        },
+        "currentBranch": {
+          "type": "string",
+          "default": "ygd/current"
+        },
+        "autoRefreshCurrent": {
+          "type": "boolean",
+          "default": false
+        },
+        "afterLoadCommand": {
+          "type": "string",
+          "default": ""
+        },
+        "afterLoadPaths": {
+          "type": "string",
+          "default": ""
+        },
+        "pullDiverged": {
+          "type": "string",
+          "default": "ask"
+        },
+        "setupCopy": {
+          "type": "string",
+          "default": ""
+        },
+        "setupCommands": {
+          "type": "string",
+          "default": ""
+        },
+        "setupPortBase": {
+          "type": "string",
+          "default": ""
+        },
+        "runCommands": {
+          "type": "string",
+          "default": ""
+        },
+        "setupCheck": {
+          "type": "string",
+          "default": ""
+        },
+        "editor": {
+          "type": "string",
+          "default": "code"
+        },
+        "shell": {
+          "type": "string",
+          "default": "zsh"
+        },
+        "shellEnv": {
+          "type": "boolean",
+          "default": true
+        },
+        "terminal": {
+          "type": "string",
+          "default": "builtin"
+        },
+        "fontSize": {
+          "type": "string",
+          "default": "12.5"
+        },
+        "notifWaiting": {
+          "type": "boolean",
+          "default": true
+        },
+        "notifDone": {
+          "type": "boolean",
+          "default": true
+        },
+        "notifChecks": {
+          "type": "boolean",
+          "default": false
+        },
+        "notifSound": {
+          "type": "boolean",
+          "default": false
+        },
+        "notifBadge": {
+          "type": "boolean",
+          "default": true
+        },
+        "dailyLimit": {
+          "type": "string",
+          "default": "25"
+        },
+        "sessionLimit": {
+          "type": "string",
+          "default": "5"
+        },
+        "warnAt": {
+          "type": "string",
+          "default": "80"
+        },
+        "pauseAtLimit": {
+          "type": "boolean",
+          "default": true
+        },
+        "rateClaude": {
+          "type": "string",
+          "default": "15"
+        },
+        "rateCodex": {
+          "type": "string",
+          "default": "10"
+        },
+        "rateGemini": {
+          "type": "string",
+          "default": "8"
+        },
+        "cacheRateClaude": {
+          "type": "string",
+          "default": "10"
+        },
+        "cacheRateCodex": {
+          "type": "string",
+          "default": "10"
+        },
+        "cacheRateGemini": {
+          "type": "string",
+          "default": "10"
+        },
+        "shortcuts": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "default": {}
+        },
+        "autoUpdate": {
+          "type": "boolean",
+          "default": true
+        },
+        "autoInstall": {
+          "type": "boolean",
+          "default": false
+        },
+        "syncWorkspaceFile": {
+          "type": "boolean",
+          "default": false
+        },
+        "logLevels": {
+          "type": "string",
+          "default": ""
+        }
+      },
+      "additionalProperties": false
+    },
+    "override": {
+      "type": "object",
+      "properties": {
+        "override": {
+          "type": "object",
+          "description": "The sections this override takes over; a section left out, or false, follows the level above.",
+          "properties": {
+            "agent": {
+              "type": "boolean"
+            },
+            "permissions": {
+              "type": "boolean"
+            },
+            "git": {
+              "type": "boolean"
+            },
+            "setup": {
+              "type": "boolean"
+            },
+            "budget": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "values": {
+          "$ref": "#/definitions/config",
+          "description": "The values of the sections taken over."
+        }
+      }
+    }
+  }
+}

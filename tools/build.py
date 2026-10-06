@@ -33,6 +33,13 @@ _cert = re.search(r"^YGD_CERT='(-----BEGIN CERTIFICATE-----\n.*?\n-----END CERTI
 if not _cert or _cert.group(1) != (ROOT / 'release-signing.pem').read_text().strip():
     raise SystemExit('install.sh YGD_CERT is not release-signing.pem')
 
+# settings.schema.json is not built here: it is the code repository's docs/settings.schema.json, copied as
+# is, because every settings.json the app writes names this URL as its $schema. The build leaves it alone
+# and only refuses to run without it.
+_schema = ROOT / 'settings.schema.json'
+if not _schema.exists() or json.loads(_schema.read_text()).get('$id') != 'https://mhguitarte.github.io/ygd-editor/settings.schema.json':
+    raise SystemExit('settings.schema.json is missing, or its $id is not https://mhguitarte.github.io/ygd-editor/settings.schema.json')
+
 # The Copy button next to the command; the label says it worked for a moment. Where the clipboard is not
 # available, the command is selected instead, ready for ⌘C.
 COPY_JS = "document.querySelectorAll('button[data-copy]').forEach((b) => b.addEventListener('click', () => { const pre = document.getElementById(b.dataset.copy); const label = b.textContent; const select = () => { const r = document.createRange(); r.selectNodeContents(pre); getSelection().removeAllRanges(); getSelection().addRange(r) }; if (!navigator.clipboard) return select(); navigator.clipboard.writeText(pre.textContent).then(() => { b.textContent = b.dataset.done; setTimeout(() => { b.textContent = label }, 1600) }, select) }))"
@@ -98,8 +105,9 @@ details { background:var(--card); border:1px solid var(--line); border-radius:14
 code, pre, .fp { font:14px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background:var(--code); border-radius:6px } code { padding:1px 6px } pre { padding:14px 16px; overflow-x:auto; margin:10px 0 } .fp { display:block; padding:12px 14px; word-break:break-all; margin:8px 0 }
 footer { margin-top:56px; padding:26px 0 40px; border-top:1px solid var(--line); color:var(--muted); font-size:15px; display:flex; flex-wrap:wrap; gap:8px 22px } footer a { color:inherit } footer .langs { display:flex; flex-wrap:wrap; gap:6px 14px; width:100%; margin-top:4px } footer .langs a[aria-current] { color:var(--ink); font-weight:600; text-decoration:none }
 /* guide */
-.guide { display:grid; grid-template-columns:220px 1fr; gap:40px; padding-top:28px } .guide > * { min-width:0 } @media (max-width: 800px) { .guide { grid-template-columns:1fr } .toc { position:static } }
-.toc { position:sticky; top:20px; align-self:start; font-size:15px } .toc strong { display:block; color:var(--muted); font-weight:600; font-size:13px; letter-spacing:.06em; text-transform:uppercase; margin-bottom:8px } .toc a { display:block; color:var(--ink); text-decoration:none; padding:4px 0; opacity:.85 } .toc a:hover { opacity:1; text-decoration:underline }
+.guide { display:grid; grid-template-columns:220px 1fr; gap:40px; padding-top:28px } .guide > * { min-width:0 } @media (max-width: 800px) { .guide { grid-template-columns:1fr } }
+.toc { position:sticky; top:20px; align-self:start; font-size:15px; max-height:calc(100vh - 40px); overflow-y:auto; overscroll-behavior:contain } .toc strong { display:block; color:var(--muted); font-weight:600; font-size:13px; letter-spacing:.06em; text-transform:uppercase; margin-bottom:8px } .toc a { display:block; color:var(--ink); text-decoration:none; padding:4px 0; opacity:.85 } .toc a:hover { opacity:1; text-decoration:underline }
+@media (max-width: 800px) { .toc { position:static; max-height:none; overflow:visible } }
 .doc h1 { font-size:38px } .doc > p.lead { margin-bottom:8px } .doc section { padding:30px 0 0 } .doc section h2 { font-size:25px; scroll-margin-top:18px } .doc p { margin:10px 0 } .doc img { width:100%; height:auto; border-radius:12px; border:1px solid var(--line); box-shadow:var(--shadow); margin:14px 0 } .doc ol { padding-left:22px } .doc li { margin:10px 0 } .doc li::marker { color:var(--accent); font-weight:600 }
 .doc table { border-collapse:collapse; margin:10px 0 } .doc td { padding:6px 16px 6px 0; border-bottom:1px solid var(--line) } .doc td:first-child { font:15px ui-monospace, Menlo, monospace; white-space:nowrap }
 /* versions */
