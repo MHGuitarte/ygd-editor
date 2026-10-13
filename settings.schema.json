@@ -91,12 +91,43 @@
           ],
           "default": "system"
         },
+        "uiScale": {
+          "type": "string",
+          "enum": [
+            "100",
+            "110",
+            "125",
+            "150"
+          ],
+          "default": "100"
+        },
+        "a11yContrast": {
+          "type": "boolean",
+          "default": false
+        },
+        "a11yMotion": {
+          "type": "boolean",
+          "default": false
+        },
+        "a11yFocus": {
+          "type": "boolean",
+          "default": false
+        },
+        "a11yAnnounce": {
+          "type": "boolean",
+          "default": true
+        },
         "agent": {
           "type": "string",
           "enum": [
             "claude",
             "codex",
-            "gemini"
+            "gemini",
+            "agy",
+            "cursor",
+            "opencode",
+            "qwen",
+            "copilot"
           ],
           "default": "claude"
         },
@@ -156,6 +187,10 @@
           "type": "boolean",
           "default": false
         },
+        "sandbox": {
+          "type": "string",
+          "default": "off"
+        },
         "permTimeout": {
           "type": "string",
           "default": ""
@@ -187,6 +222,22 @@
         "deleteAfterMerge": {
           "type": "boolean",
           "default": true
+        },
+        "ciAutoFix": {
+          "type": "boolean",
+          "default": false
+        },
+        "ciFixRetries": {
+          "type": "string",
+          "default": "3"
+        },
+        "collisionRadar": {
+          "type": "boolean",
+          "default": true
+        },
+        "landUpdate": {
+          "type": "string",
+          "default": "merge"
         },
         "fetchOnOpen": {
           "type": "boolean",
@@ -232,6 +283,34 @@
           "type": "string",
           "default": ""
         },
+        "setupEnv": {
+          "type": "string",
+          "default": ""
+        },
+        "setupEnvFile": {
+          "type": "string",
+          "default": ""
+        },
+        "setupSparse": {
+          "type": "string",
+          "default": ""
+        },
+        "gateOn": {
+          "type": "boolean",
+          "default": false
+        },
+        "gateRetries": {
+          "type": "string",
+          "default": "3"
+        },
+        "gateTimeout": {
+          "type": "string",
+          "default": "10"
+        },
+        "mcpServers": {
+          "type": "string",
+          "default": ""
+        },
         "editor": {
           "type": "string",
           "default": "code"
@@ -272,6 +351,18 @@
           "type": "boolean",
           "default": true
         },
+        "trayIcon": {
+          "type": "boolean",
+          "default": true
+        },
+        "pushOn": {
+          "type": "boolean",
+          "default": false
+        },
+        "pushDetails": {
+          "type": "boolean",
+          "default": false
+        },
         "dailyLimit": {
           "type": "string",
           "default": "25"
@@ -288,6 +379,10 @@
           "type": "boolean",
           "default": true
         },
+        "quotaHoldAt": {
+          "type": "string",
+          "default": "90"
+        },
         "rateClaude": {
           "type": "string",
           "default": "15"
@@ -300,6 +395,26 @@
           "type": "string",
           "default": "8"
         },
+        "rateAgy": {
+          "type": "string",
+          "default": "8"
+        },
+        "rateCursor": {
+          "type": "string",
+          "default": "10"
+        },
+        "rateOpencode": {
+          "type": "string",
+          "default": "10"
+        },
+        "rateQwen": {
+          "type": "string",
+          "default": "5"
+        },
+        "rateCopilot": {
+          "type": "string",
+          "default": "10"
+        },
         "cacheRateClaude": {
           "type": "string",
           "default": "10"
@@ -309,6 +424,26 @@
           "default": "10"
         },
         "cacheRateGemini": {
+          "type": "string",
+          "default": "10"
+        },
+        "cacheRateAgy": {
+          "type": "string",
+          "default": "10"
+        },
+        "cacheRateCursor": {
+          "type": "string",
+          "default": "10"
+        },
+        "cacheRateOpencode": {
+          "type": "string",
+          "default": "10"
+        },
+        "cacheRateQwen": {
+          "type": "string",
+          "default": "10"
+        },
+        "cacheRateCopilot": {
           "type": "string",
           "default": "10"
         },
@@ -326,6 +461,14 @@
         "autoInstall": {
           "type": "boolean",
           "default": false
+        },
+        "updateChannel": {
+          "type": "string",
+          "enum": [
+            "stable",
+            "beta"
+          ],
+          "default": "stable"
         },
         "syncWorkspaceFile": {
           "type": "boolean",
@@ -355,6 +498,9 @@
               "type": "boolean"
             },
             "setup": {
+              "type": "boolean"
+            },
+            "mcp": {
               "type": "boolean"
             },
             "budget": {
