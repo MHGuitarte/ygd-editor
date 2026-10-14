@@ -127,7 +127,8 @@
             "cursor",
             "opencode",
             "qwen",
-            "copilot"
+            "copilot",
+            "acp"
           ],
           "default": "claude"
         },
@@ -231,9 +232,17 @@
           "type": "string",
           "default": "3"
         },
+        "ciAutoStart": {
+          "type": "boolean",
+          "default": false
+        },
         "collisionRadar": {
           "type": "boolean",
           "default": true
+        },
+        "radarWorktrees": {
+          "type": "string",
+          "default": "12"
         },
         "landUpdate": {
           "type": "string",
@@ -311,6 +320,14 @@
           "type": "string",
           "default": ""
         },
+        "acpCommand": {
+          "type": "string",
+          "default": ""
+        },
+        "acpArgs": {
+          "type": "string",
+          "default": ""
+        },
         "editor": {
           "type": "string",
           "default": "code"
@@ -362,6 +379,10 @@
         "pushDetails": {
           "type": "boolean",
           "default": false
+        },
+        "pushIdle": {
+          "type": "string",
+          "default": ""
         },
         "dailyLimit": {
           "type": "string",
@@ -415,6 +436,10 @@
           "type": "string",
           "default": "10"
         },
+        "rateAcp": {
+          "type": "string",
+          "default": "10"
+        },
         "cacheRateClaude": {
           "type": "string",
           "default": "10"
@@ -444,6 +469,10 @@
           "default": "10"
         },
         "cacheRateCopilot": {
+          "type": "string",
+          "default": "10"
+        },
+        "cacheRateAcp": {
           "type": "string",
           "default": "10"
         },
